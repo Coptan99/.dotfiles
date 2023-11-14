@@ -1,0 +1,50 @@
+super + Return
+    $TERMINAL
+
+super + v 
+    $TERMINAL -e nvim
+
+super + s
+	scratchpad
+
+super + d 
+    dmenu_run
+
+super + w
+    $BROWSER
+
+super + {equal, minus, BackSpace, plus}
+    volumectl {up, down, toggle, togglemic}
+
+super + shift + BackSpace
+    $HOME/.local/bin/exit.sh
+
+super + m
+    $HOME/.local/bin/mount.sh
+
+super + f
+    $TERMINAL -e nnn -Rr
+
+super + r
+    /opt/resolve/bin/resolve
+
+Print
+    $HOME/.local/bin/screenshot
+
+super + n
+    $TERMINAL -e ncmpcpp
+
+super + N
+    $TERMINAL -n scratchpad -g 90x25 -e nmtui
+
+super + P
+    $TERMINAL -n "scratchpad" -g 80x20 -e pulsemixer
+
+super + p
+    mpv $(xclip -o)
+
+super + x
+    slock
+
+XF86MonBrightness{Up,Down}
+	screenlightctl {inc,dec}
