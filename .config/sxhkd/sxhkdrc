@@ -1,0 +1,18 @@
+super + Return
+    $TERMINAL
+super + w
+    $BROWSER
+XF86MonBrightness{Up,Down}
+    brightnessctl s 5%{+,-}
+XF86Audio{Raise,Lower}Volume
+    pactl set-sink-volume @DEFAULT_SINK@ {+, -}5%
+XF86AudioMute
+    pactl set-sink-volume @DEFAULT_SINK@ toggle
+Print
+    $HOME/.local/bin/screenshot
+shift + Print
+    $HOME/.local/bin/screenshot select
+super + m
+    $HOME/bin/mount.sh
+super + d
+    $HOME/bin/passmenu.sh

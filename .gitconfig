@@ -1,0 +1,14 @@
+[user]
+	email = omarcoptan9@gmail.com
+	name = Omar Mohamed
+	signingkey = ~/.ssh/id_rsa.pub
+[commit]
+    gpgsign = true
+[credential]
+	helper = store
+[gpg]
+    format = ssh
+[core]
+	editor = nvim
+[pull]
+	rebase = true
