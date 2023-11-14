@@ -1,0 +1,49 @@
+#!/bin/sh
+
+getvol() {
+	vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
+	[ -z "$vol" ] && return 1
+	[ "$vol" != "${vol%\[MUTED\]}" ] && echo "Muted" && return 1
+	vol="${vol#Volume: }"
+	IFS="."
+	# shellcheck disable=SC2086
+	set -- ${vol#0}
+	printf "%s" "$@"
+}
+
+case "$1" in
+    "up") wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+    ;;
+    "down") wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+    ;;
+    "toggle") wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    ;;
+    "togglemic")
+        if [ -f /tmp/mic.pid ]; then
+            rm -rf /tmp/mic.pid
+            notify-send -r 9990 -u low -a "$(basename "$0")" -i "audio-input-microphone-high-panel" "Microphone unmuted"
+        else
+            echo "[Mic muted]" > /tmp/mic.pid
+            notify-send -r 9990 -u low -a "$(basename "$0")" -i "audio-input-microphone-muted" "Microphone muted"
+        fi
+        wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+        pkill -x -RTMIN+8 dwmblocks
+        exit
+    ;;
+    get) getvol && echo "%"; exit $?;;
+    *) exit 1;;
+esac
+
+vol="$(getvol)" || vol=0
+icon="audio-volume-muted"
+if [ "$vol" -ge 70 ]; then
+	icon="audio-volume-high"
+elif [ "$vol" -ge 30 ]; then
+	icon="audio-volume-medium"
+elif [ "$vol" -ge 1 ]; then
+	icon="audio-volume-low"
+fi
+
+# Refresh dwmblocks
+pkill -x -RTMIN+10 dwmblocks
+notify-send -r 9990 -u low -a "$(basename "$0")" -i "$icon" -h "int:value:$vol" "volume" "$vol%"

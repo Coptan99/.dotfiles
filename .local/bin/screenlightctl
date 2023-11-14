@@ -1,0 +1,26 @@
+#!/bin/sh
+
+case "$1" in
+	inc)
+        xbacklight -inc 10
+		;;
+	dec)
+        xbacklight -dec 10
+		;;
+	dim)
+		trap "exit 0" TERM INT
+		sleep infinity & spid=$!
+		# shellcheck disable=SC2064
+		trap "xbacklight -steps 1 -set $(xbacklight -get); kill $spid" EXIT
+		xbacklight -time 200 -steps 20 -set "${2:-10}"
+		wait
+		;;
+	*) echo "$(basename "$0"): unknown command \"$1\"" >&2; exit 1 ;;
+esac
+
+bri="$(xbacklight -get 2>/dev/null | awk '{print int($1)}')" || exit 1
+icon="display-brightness-medium"
+[ "$bri" -ge 80 ] && icon="display-brightness-high"
+[ "$bri" -lt 40 ] && icon="display-brightness-low"
+
+notify-send -r 9991 -u low -a "$(basename "$0")" -i "$icon" -h "int:value:$bri" "brightness" "$bri%"

@@ -1,0 +1,46 @@
+[Default Applications]
+text/x-shellscript=text.desktop;
+x-scheme-handler/mailto=mail.desktop;
+text/plain=text.desktop;
+application/postscript=pdf.desktop;
+application/pdf=pdf.desktop;
+image/png=image.desktop;
+image/jpeg=image.desktop;
+image/gif=image.desktop;
+video/x-matroska=video.desktop
+video/mp4=video.desktop
+inode/directory=file.desktop
+audio/ogg=audio.desktop
+audio/mpeg=audio.desktop
+audio/x-m4a=audio.desktop
+audio/x-wav=audio.desktop
+application/octet-stream=audio.desktop
+x-scheme-handler/mailto=mail.desktop
+x-scheme-handler/http=browser.desktop
+x-scheme-handler/https=browser.desktop
+x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_usr_lib_eclipse_.desktop
+x-scheme-handler/discord-712465656758665259=discord-712465656758665259.desktop
+x-scheme-handler/msteams=teams.desktop
+x-scheme-handler/chrome=browser.desktop
+text/html=browser.desktop
+application/x-extension-htm=browser.desktop
+application/x-extension-html=browser.desktop
+application/x-extension-shtml=browser.desktop
+application/xhtml+xml=browser.desktop
+application/x-extension-xhtml=browser.desktop
+application/x-extension-xht=browser.desktop
+x-scheme-handler/tonsite=org.telegram.desktop.desktop
+application/x-extension-burp=install4j_rpajub-BurpSuiteCommunity.desktop
+
+[Added Associations]
+x-scheme-handler/http=browser.desktop;
+x-scheme-handler/https=browser.desktop;
+x-scheme-handler/chrome=browser.desktop;
+text/html=browser.desktop;
+application/x-extension-htm=browser.desktop;
+application/x-extension-html=browser.desktop;
+application/x-extension-shtml=browser.desktop;
+application/xhtml+xml=browser.desktop;
+application/x-extension-xhtml=browser.desktop;
+application/x-extension-xht=browser.desktop;
+x-scheme-handler/tonsite=org.telegram.desktop.desktop;

@@ -1,0 +1,34 @@
+#!/bin/sh
+
+status() {
+	[ "$(cat /tmp/batstat 2>/dev/null)" = "$1" ]
+	c=$?
+	[ $c -eq 0 ] || echo "$1" >/tmp/batstat
+	return $c
+}
+
+for bat in /sys/class/power_supply/BAT?*; do
+	[ -n "${cap+x}" ] && printf " "
+	cap="$(cat "$bat/capacity" 2>&1)"
+	stat="$(cat "$bat/status" 2>&1)"
+	case "$stat" in
+		Full)
+			flag="F"
+			status "$stat" || notify-send -r 9992 -i battery-full-charged -a "$(basename "$0")" "battery is fully charged" "I am full"
+			;;
+		Charging)
+			flag="C"
+			status "$stat" || dunstify -C 9992
+			;;
+		Discharging)
+			if [ "$cap" -le 10 ]; then
+				flag="!"
+				status "Low" || notify-send -r 9992 -u critical -i battery-level-10 -a "$(basename "$0")" "battery is too low" "I am about to die"
+			fi
+			;;
+		"Not charging") flag="N" ;;
+		Unknown) flag="?" ;;
+	esac
+	printf "%d%%%s" "$cap" "${flag:+ [$flag]}"
+done && echo
+
