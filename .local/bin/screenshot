@@ -1,0 +1,16 @@
+#!/bin/sh
+
+dir="$(xdg-user-dir PICTURES)"
+out="$dir/screenshots/screenshot-$(date "+%Y%m%d-%H%M%S").png"
+[ -d "$dir" ] || mkdir -p "$dir" || { echo "$(basename "$0"): can't create dir $dir" >&2; exit 1; }
+
+# case "${1:-$(printf "select\\ncurrent-window-notworking\\nfull-screen\\nselect-copy\\ncurrent-window-copy-notworking\\nfull-screen-copy" | fuzzel -d -p "screenshot: ")}" in
+case "${1:-$(printf "select\\nfull-screen\\nselect-copy\\nfull-screen-copy" | fuzzel -d -p "screenshot: ")}" in
+	select) grim -g "$(slurp)" "$out" ;;
+	# current-window) scrot -w "$(xdotool getactivewindow)" "$out" ;;
+	full-screen) grim "$out" ;;
+	select-copy) grim -g "$(slurp)" - | wl-copy -t image/png ;; # needs fixing
+	# current-window-copy) scrot -w "$(xdotool getactivewindow)" - | xclip -sel clip -t image/png ;;
+	full-screen-copy) grim - | wl-copy -t image/png ;;
+	*) exit 1 ;;
+esac

@@ -1,0 +1,3 @@
+$include /etc/inputrc
+set editing-mode vi
+Control-l: clear-screen

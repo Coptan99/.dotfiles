@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=PDF Viewer
+Icon=zathura
+Exec=zathura %u

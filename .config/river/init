@@ -1,0 +1,130 @@
+#!/bin/sh
+
+run() { pidof -qsx "$1" || "$@" & }
+
+# Custom keymaps
+riverctl map normal Super Return spawn "$TERMINAL"
+riverctl map normal Super D spawn "fuzzel"
+riverctl map normal Super F spawn "$TERMINAL -e nnn -Rr"
+riverctl map normal Super W spawn "$BROWSER"
+riverctl map normal Super Print spawn "screenshot"
+riverctl map normal Super+Shift Backspace spawn "exit.sh"
+riverctl map normal Super n spawn "$TERMINAL -e ncmpcpp"
+riverctl map normal Super+Shift n spawn "$TERMINAL -e nmtui"
+riverctl map normal Super+Shift p spawn "$TERMINAL -e pulsemixer"
+
+riverctl map normal Super J focus-view next
+riverctl map normal Super K focus-view previous
+riverctl map normal Super+Shift J swap next
+riverctl map normal Super+Shift K swap previous
+
+riverctl map normal Super Period focus-output next
+riverctl map normal Super Comma focus-output previous
+riverctl map normal Super+Shift Period send-to-output next
+riverctl map normal Super+Shift Comma send-to-output previous
+
+riverctl map -repeat normal Super H send-layout-cmd rivertile "main-ratio -0.05"
+riverctl map -repeat normal Super L send-layout-cmd rivertile "main-ratio +0.05"
+riverctl map -repeat normal Super+Shift H send-layout-cmd rivertile "main-count +1"
+riverctl map -repeat normal Super+Shift L send-layout-cmd rivertile "main-count -1"
+
+riverctl map -repeat normal Super+Control H move left 100
+riverctl map -repeat normal Super+Control J move down 100
+riverctl map -repeat normal Super+Control K move up 100
+riverctl map -repeat normal Super+Control L move right 100
+
+riverctl map normal Super+Control+Shift H snap left
+riverctl map normal Super+Control+Shift J snap down
+riverctl map normal Super+Control+Shift K snap up
+riverctl map normal Super+Control+Shift L snap right
+
+riverctl map normal Super+Shift Return zoom
+riverctl map normal Super+Shift Q close
+riverctl map normal Super+Shift+Control Q exit
+riverctl map normal Super+Shift F toggle-fullscreen
+riverctl map normal Super+Shift Space toggle-float
+
+riverctl map-pointer normal Super BTN_LEFT move-view
+riverctl map-pointer normal Super BTN_RIGHT resize-view
+
+riverctl declare-mode passthrough
+riverctl map normal Super F11 enter-mode passthrough
+riverctl map passthrough Super F11 enter-mode normal
+
+all_tags=$(((1 << 32) - 1))
+sticky_tag=$((1 << 31))
+riverctl map normal Super 0 set-focused-tags $all_tags
+riverctl map normal Super+Shift 0 set-view-tags $all_tags
+riverctl map normal Super Tab focus-previous-tags
+riverctl map normal Super+Shift Tab send-to-previous-tags
+riverctl map normal Super+Shift S toggle-view-tags $sticky_tag
+riverctl spawn-tagmask $(( all_tags ^ sticky_tag ))
+for i in $(seq 1 9); do
+	tags=$((1 << (i - 1)))
+	riverctl map normal Super "$i" set-focused-tags $((sticky_tag + tags))
+	riverctl map normal Super+Shift "$i" set-view-tags $tags
+	riverctl map normal Super+Control "$i" toggle-focused-tags $tags
+	riverctl map normal Super+Shift+Control "$i" toggle-view-tags $tags
+done
+
+for mode in normal locked; do
+
+	riverctl map -repeat $mode None XF86AudioRaiseVolume spawn "volumectl up"
+	riverctl map -repeat $mode None XF86AudioLowerVolume spawn "volumectl down"
+	riverctl map $mode None XF86AudioMute                spawn "volumectl toggle"
+	riverctl map -repeat $mode Super Equal               spawn "volumectl up"
+	riverctl map -repeat $mode Super Minus               spawn "volumectl down"
+	riverctl map $mode Super Backspace                   spawn "volumectl toggle"
+	riverctl map $mode Super Plus                        spawn "volumectl togglemic"
+
+	riverctl map $mode None XF86AudioMedia spawn "playerctl play-pause"
+	riverctl map $mode None XF86AudioPlay  spawn "playerctl play-pause"
+	riverctl map $mode None XF86AudioPrev  spawn "playerctl previous"
+	riverctl map $mode None XF86AudioNext  spawn "playerctl next"
+	riverctl map $mode Control+Alt Space   spawn "playerctl play-pause"
+	riverctl map $mode Control+Alt Comma   spawn "playerctl previous"
+	riverctl map $mode Control+Alt Period  spawn "playerctl next"
+
+	riverctl map -repeat $mode None XF86MonBrightnessUp   spawn "screenlightctl 10%+"
+	riverctl map -repeat $mode None XF86MonBrightnessDown spawn "screenlightctl 10%-"
+done
+
+riverctl background-color 0x2e3440
+riverctl border-color-urgent 0xb74e58
+riverctl border-color-focused 0x5e81ac
+riverctl border-color-unfocused 0x4c566a
+
+riverctl rule-add ssd
+riverctl rule-add -app-id bar csd
+riverctl rule-add -app-id float float
+
+riverctl hide-cursor when-typing enabled
+riverctl xcursor-theme Adwaita
+
+riverctl set-repeat 50 200
+riverctl keyboard-layout -options "caps:escape,grp:alt_caps_toggle,grp_led:caps" "us,ara"
+
+riverctl input "$(riverctl list-inputs | grep -i touchpad)" tap enabled
+
+riverctl default-layout rivertile
+rivertile -view-padding 4 -outer-padding 4 &
+
+dbus-update-activation-environment --all
+
+[ -s "$XDG_DATA_HOME/bg" ] && wbg "$XDG_DATA_HOME/bg" &
+
+pidof -qsx sandbar || {
+	riverctl spawn "$XDG_CONFIG_HOME/river/status"
+	riverctl spawn "$XDG_CONFIG_HOME/river/bar"
+}
+
+run foot --server
+run kanshi
+run pipewire
+run mako
+run scrond
+run mpris-proxy
+run poweralertd
+run swayidle -w
+run syncthing serve --no-browser
+pidof -qsx mpd || (mpd && mpd-mpris) &

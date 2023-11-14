@@ -1,0 +1,43 @@
+[alias]
+	co = checkout
+	cm = commit -m
+	st = status -sb
+	br = branch
+	cl = clone
+	dt = difftool
+	wt = worktree
+	ls = ls-files
+	tree = ls-tree --full-tree -r HEAD
+	logg = log --oneline --graph --decorate
+	undo = reset --soft HEAD^
+
+[commit]
+	gpgsign = true
+
+[core]
+	editor = nvim
+	pager = delta
+
+[delta]
+	tabs = 4
+	side-by-side = false
+	line-numbers = true
+	syntax-theme = Nord
+	file-modified-label = modified:
+
+[gpg]
+	format = ssh
+
+[pull]
+	autoStash = true
+
+[review "review.lineageos.org"]
+	username = Coptan99
+
+[trailer "changeid"]
+	key = Change-Id
+
+[user]
+	email = omarcoptan9@gmail.com
+	name = Omar Mohamed
+	signingkey = ~/.ssh/id_rsa.pub
