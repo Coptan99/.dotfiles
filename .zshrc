@@ -4,7 +4,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 bindkey -s ^f "tmux new ~/.local/bin/tmux-sessionizer\n"
-bindkey -s "^F" 'cd "$(dirname "$(fzf-tmux)")"\n'
+bindkey -s "^e" 'cd "$(dirname "$(fzf-tmux)")"\n'
 bindkey -s "^s" '$EDITOR "$(fzf-tmux)"\n'
 bindkey -s "^t" '[ -f TODO.md ] && $EDITOR TODO.md || notes todo\n'
 
