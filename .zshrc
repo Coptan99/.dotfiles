@@ -1,15 +1,78 @@
-setopt autocd		# Automatically cd into typed directory.
-set -o vi           # vi mode
-source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
-source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+setopt autocd
+setopt interactive_comments
+setopt prompt_subst
+stty stop undef
 
-# keybindings
-bindkey -s ^f "tmux new ~/.local/bin/tmux-sessionizer\n"
-bindkey -s "^e" 'cd "$(dirname "$(fzf-tmux)")"\n'
-bindkey -s "^s" '$EDITOR "$(fzf-tmux)"\n'
-bindkey -s "^t" '[ -f TODO.md ] && $EDITOR TODO.md || notes todo\n'
+__git_branch() {
+	br="$(git symbolic-ref HEAD --short 2>/dev/null)"
+	[ "$br" ] && echo "($br) "
+}
 
-### PATH
+autoload -U colors && colors
+PS1="%B%{$fg[cyan]%}%c %{$fg[blue]%}\$(__git_branch)%{$fg[green]%}>%{$reset_color%}%b "
+
+HISTFILE=~/.zsh_history
+HISTSIZE=10000000
+SAVEHIST=10000000
+
+autoload -U compinit
+zstyle ":completion:*" menu select
+zmodload zsh/complist
+compinit
+_comp_options+=(globdots)
+
+bindkey -v
+KEYTIMEOUT=1
+
+bindkey -M menuselect "h" vi-backward-char
+bindkey -M menuselect "k" vi-up-line-or-history
+bindkey -M menuselect "l" vi-forward-char
+bindkey -M menuselect "j" vi-down-line-or-history
+bindkey -M menuselect "^[[Z" reverse-menu-complete
+
+bindkey -v "^?" backward-delete-char
+bindkey "^[[P" delete-char
+bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word
+
+# vi cursor shapes
+zle-keymap-select() {
+	case $KEYMAP in
+		vicmd) echo -ne "\e[1 q" ;;
+		viins|main) echo -ne "\e[5 q" ;;
+	esac
+}
+zle -N zle-keymap-select
+zle-line-init() {
+	zle -K viins
+	echo -ne "\e[5 q"
+}
+zle -N zle-line-init
+echo -ne "\e[5 q"
+preexec() {
+	echo -ne "\e[5 q"
+}
+
+autoload edit-command-line
+zle -N edit-command-line
+bindkey "^e" edit-command-line
+
+plugdir="/usr/share/zsh/plugins"
+if [ -d "$plugdir" ]; then
+	[ -f "$plugdir/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" ] &&
+		. "$plugdir/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
+	[ -f "$plugdir/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh" ] &&
+		. "$plugdir/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
+	if [ -f "$plugdir/zsh-history-substring-search/zsh-history-substring-search.zsh" ]; then
+		. "$plugdir/zsh-history-substring-search/zsh-history-substring-search.zsh"
+		bindkey -a "k" history-substring-search-up
+		bindkey -a "j" history-substring-search-down
+		bindkey "^[[A" history-substring-search-up
+		bindkey "^[[B" history-substring-search-down
+	fi
+fi
+unset plugdir
+
 if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
@@ -18,55 +81,15 @@ if [ -d "/var/lib/flatpak/exports/bin/" ] ;
   then PATH="/var/lib/flatpak/exports/bin/:$PATH"
 fi
 
-# some functions
-function extract {
- if [ -z "$1" ]; then
-    # display usage if no parameters given
-    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
-    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
- else
-    for n in "$@"
-    do
-      if [ -f "$n" ] ; then case "${n%,}" in
-            *.cbt|*.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar)
-                         tar xvf "$n"       ;;
-            *.lzma)      unlzma ./"$n"      ;;
-            *.bz2)       bunzip2 ./"$n"     ;;
-            *.cbr|*.rar)       unrar x -ad ./"$n" ;;
-            *.gz)        gunzip ./"$n"      ;;
-            *.cbz|*.epub|*.zip)       unzip ./"$n"       ;;
-            *.z)         uncompress ./"$n"  ;;
-            *.7z|*.arj|*.cab|*.cb7|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.pkg|*.rpm|*.udf|*.wim|*.xar)
-                         7z x ./"$n"        ;;
-            *.xz)        unxz ./"$n"        ;;
-            *.exe)       cabextract ./"$n"  ;;
-            *.cpio)      cpio -id < ./"$n"  ;;
-            *.cba|*.ace)      unace x ./"$n"      ;;
-            *)
-                         echo "extract: '$n' - unknown archive method"
-                         return 1
-                         ;;
-          esac
-      else
-          echo "'$n' - file does not exist"
-          return 1
-      fi
-    done
-fi
-}
+bindkey -s "^f" 'cd "$(dirname "$(fzf-tmux)")"\n'
+bindkey -s "^s" '$EDITOR "$(fzf-tmux)"\n'
+bindkey -s "^t" '[ -f TODO.md ] && $EDITOR TODO.md || notes todo\n'
 
-# aliases
-# alias vi="nvim"
-alias vim="nvim"
-alias ..="cd .."
-alias ...="cd ../.."
-alias ....="cd ../../.."
-
-alias ls='ls -al --color=always --group-directories-first' # my preferred listing
+alias vi='nvim'
+alias ls='ls --color=always --group-directories-first' # my preferred listing
 alias la='ls -a --color=always --group-directories-first'  # all files and dirs
 alias ll='ls -l --color=always --group-directories-first'  # long format
 alias lt='tree -C' # tree listing
-
 
 alias i='doas xbps-install -S'
 alias u='i; doas xbps-install -u xbps; doas xbps-install -u'
@@ -77,5 +100,3 @@ alias battery="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | awk '/pe
 alias batteryinfo='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-
-eval "$(starship init zsh)"
