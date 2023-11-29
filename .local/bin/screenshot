@@ -2,9 +2,22 @@
 output='/home/coptan/Pictures/screenshots/%Y-%m-%d-%T-screenshot.png'
 
 case "$1" in
-	"select") scrot "$output" --select --line mode=edge || exit ;;
-	"window") scrot "$output" --focused --border || exit ;;
+	"select")
+        scrot "$output" --select --line mode=edge || exit
+        notify-send "Screenshot taken."
+        ;;
+	"window")
+        scrot "$output" --focused --border || exit
+        notify-send "Screenshot taken."
+        ;;
+    "copyfull")
+        scrot "$output" -e 'xclip -selection clipboard -t image/png -i $f' || exit
+        notify-send "Screenshot copied to clipboard."
+        ;;
+    "copy")
+        scrot "$output" -s -e 'xclip -selection clipboard -t image/png -i $f' || exit
+        notify-send "Screenshot copied to clipboard."
+        ;;
 	*) scrot "$output" || exit ;;
 esac
 
-notify-send "Screenshot taken."
