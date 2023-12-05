@@ -9,7 +9,8 @@ __git_branch() {
 }
 
 autoload -U colors && colors
-PS1="%B%{$fg[cyan]%}%c %{$fg[blue]%}\$(__git_branch)%{$fg[green]%}>%{$reset_color%}%b "
+# PS1="%B%{$fg[cyan]%}%c %{$fg[blue]%}\$(__git_branch)%{$fg[green]%}>%{$reset_color%}%b "
+PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magneta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000000
@@ -94,7 +95,7 @@ alias lt='tree -C' # tree listing
 alias i='doas xbps-install -S'
 alias u='i; doas xbps-install -u xbps; doas xbps-install -u'
 alias q='doas xbps-query -Rs'
-alias r='doas xbps-remove'
+alias r='doas xbps-remove -R'
 
 alias battery="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | awk '/percentage/ {print $2}'"
 alias batteryinfo='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
