@@ -27,7 +27,8 @@ opt.smartindent = true
 -- searching
 opt.ignorecase = true
 opt.smartcase = true
-vim.opt.incsearch = true
+opt.incsearch = true
+opt.hlsearch = false
 
 -- split
 opt.splitbelow = true

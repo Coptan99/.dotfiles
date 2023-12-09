@@ -38,4 +38,7 @@ super + shift + BackSpace
     $HOME/.local/bin/exit.sh
 
 super + n
-    st -e nnn
+    st -e lf
+
+super + t
+    st -e gotop

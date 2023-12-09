@@ -22,8 +22,7 @@ zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
-bindkey -v
-KEYTIMEOUT=1
+set -o vi
 
 bindkey -M menuselect "h" vi-backward-char
 bindkey -M menuselect "k" vi-up-line-or-history
@@ -36,25 +35,7 @@ bindkey "^[[P" delete-char
 bindkey "^[[1;5D" backward-word
 bindkey "^[[1;5C" forward-word
 
-# vi cursor shapes
-zle-keymap-select() {
-	case $KEYMAP in
-		vicmd) echo -ne "\e[1 q" ;;
-		viins|main) echo -ne "\e[5 q" ;;
-	esac
-}
-zle -N zle-keymap-select
-zle-line-init() {
-	zle -K viins
-	echo -ne "\e[5 q"
-}
-zle -N zle-line-init
-echo -ne "\e[5 q"
-preexec() {
-	echo -ne "\e[5 q"
-}
-
-autoload edit-command-line
+# autoload edit-command-line
 zle -N edit-command-line
 bindkey "^e" edit-command-line
 
@@ -82,6 +63,10 @@ if [ -d "/var/lib/flatpak/exports/bin/" ] ;
   then PATH="/var/lib/flatpak/exports/bin/:$PATH"
 fi
 
+if [ -d "$HOME/.bin" ] ;
+  then PATH="$HOME/.bin:$PATH"
+fi
+
 bindkey -s "^f" 'cd "$(dirname "$(fzf-tmux)")"\n'
 bindkey -s "^s" '$EDITOR "$(fzf-tmux)"\n'
 bindkey -s "^t" '[ -f TODO.md ] && $EDITOR TODO.md || notes todo\n'
@@ -101,3 +86,5 @@ alias battery="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | awk '/pe
 alias batteryinfo='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+
+eval "$(starship init zsh)"

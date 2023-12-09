@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export BROWSER="firefox"
+export BROWSER="brave-browser-stable"
 export TERMINAL="st"
 export PATH="$PATH:${$(find ~/.local/bin -maxdepth 1 -type d -printf %p:)%%:}"
 export MANPAGER="nvim +Man!"

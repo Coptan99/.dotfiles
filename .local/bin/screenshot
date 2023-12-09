@@ -18,6 +18,9 @@ case "$1" in
         scrot "$output" -s -e 'xclip -selection clipboard -t image/png -i $f' || exit
         notify-send "Screenshot copied to clipboard."
         ;;
-	*) scrot "$output" || exit ;;
+	*)
+     scrot "$output" || exit
+     notify-send "Screenshot taken."
+     ;;
 esac
 
