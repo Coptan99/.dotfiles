@@ -15,7 +15,7 @@ opt.signcolumn = "yes"
 opt.colorcolumn = "80"
 opt.cursorline = true
 opt.termguicolors = true
-opt.guicursor = ""
+-- opt.guicursor = ""
 
 -- indentation
 opt.shiftwidth = 4
