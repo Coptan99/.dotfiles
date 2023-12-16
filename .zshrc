@@ -86,5 +86,6 @@ alias battery="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | awk '/pe
 alias batteryinfo='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
+alias big='find / -type f -size +50M -exec du -h {} \; | sort -n'
 
-eval "$(starship init zsh)"
+# eval "$(starship init zsh)"

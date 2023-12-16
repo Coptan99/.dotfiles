@@ -5,7 +5,7 @@ super + w
     $BROWSER
 
 XF86MonBrightness{Up,Down}
-    xbacklight -{inc, dec} 5
+    brillo -q -{A, U} 5
 
 XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume @DEFAULT_SINK@ {+, -}5%
