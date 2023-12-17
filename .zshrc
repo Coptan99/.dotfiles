@@ -9,8 +9,8 @@ __git_branch() {
 }
 
 autoload -U colors && colors
-# PS1="%B%{$fg[cyan]%}%c %{$fg[blue]%}\$(__git_branch)%{$fg[green]%}>%{$reset_color%}%b "
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magneta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+PS1="%B%{$fg[cyan]%}%c %{$fg[blue]%}\$(__git_branch)%{$fg[green]%}>%{$reset_color%}%b "
+# PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magneta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 HISTFILE=~/.zsh_history
 HISTSIZE=10000000
