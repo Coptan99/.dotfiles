@@ -38,7 +38,7 @@ super + d
     $HOME/.local/bin/passmenu.sh
 
 super + shift + BackSpace
-    $HOME/.local/bin/exit.sh
+    $HOME/.local/bin/powermenu
 
 super + n
     st -e lf
