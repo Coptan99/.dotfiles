@@ -5,4 +5,5 @@ dunst &
 pipewire &
 xbacklight -set 5%
 xwallpaper --stretch ~/Pictures/wallpaper.jpg
+picom &
 dbus-run-session dwm
