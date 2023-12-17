@@ -70,6 +70,7 @@ fi
 bindkey -s "^f" 'cd "$(dirname "$(fzf-tmux)")"\n'
 bindkey -s "^s" '$EDITOR "$(fzf-tmux)"\n'
 bindkey -s "^t" '[ -f TODO.md ] && $EDITOR TODO.md || notes todo\n'
+bindkey -s "^f" 'tmux\n'
 
 alias vi='nvim'
 alias ls='ls --color=always --group-directories-first' # my preferred listing
