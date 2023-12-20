@@ -6,4 +6,6 @@ pipewire &
 xbacklight -set 5%
 xwallpaper --stretch ~/Pictures/wallpaper.jpg
 picom &
+nm-applet &
+conky &
 dbus-run-session dwm
