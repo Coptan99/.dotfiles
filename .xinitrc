@@ -4,8 +4,8 @@ dwmblocks &
 dunst &
 pipewire &
 xbacklight -set 5%
-xwallpaper --stretch ~/Pictures/wallpaper.jpg
 picom &
 nm-applet &
 conky &
+.local/bin/wallpaper.sh
 dbus-run-session dwm
