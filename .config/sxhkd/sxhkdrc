@@ -4,9 +4,6 @@ super + Return
 super + w
     $BROWSER
 
-super + d
-    dmenu_run
-
 XF86MonBrightness{Up,Down}
     brillo -q -{A, U} 5
 
