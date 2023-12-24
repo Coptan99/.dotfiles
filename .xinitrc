@@ -1,4 +1,4 @@
-setxkbmap -layout us,ara -option grp:alts_toggle,caps:escape,grp_led:caps
+setxkbmap -layout us,ara -option grp:win_space_toggle,caps:escape,grp_led:caps
 sxhkd &
 dwmblocks &
 dunst &
