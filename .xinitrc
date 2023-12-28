@@ -5,7 +5,5 @@ dunst &
 pipewire &
 xbacklight -set 5%
 picom &
-nm-applet &
-conky &
-.local/bin/wallpaper.sh
-dbus-run-session dwm
+feh --bg-fill ~/Pictures/wallpapers/main_wallpaper.jpg
+dbus-run-session i3
