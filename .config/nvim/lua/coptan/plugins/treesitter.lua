@@ -26,6 +26,7 @@ return {
                 "bash",
                 "lua",
                 "vim",
+                "javascript",
             },
         })
     end,
