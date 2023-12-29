@@ -73,7 +73,7 @@ bindkey -s "^s" '$EDITOR "$(fzf-tmux)"\n'
 bindkey -s "^t" '[ -f TODO.md ] && $EDITOR TODO.md || notes todo\n'
 bindkey -s "^f" 'tmux\n'
 
-alias vi='nvim'
+alias vim='nvim'
 alias ls='ls --color=always --group-directories-first' # my preferred listing
 alias la='ls -a --color=always --group-directories-first'  # all files and dirs
 alias ll='ls -l --color=always --group-directories-first'  # long format
