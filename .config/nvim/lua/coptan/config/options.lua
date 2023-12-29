@@ -1,7 +1,6 @@
 local opt = vim.opt
 
 -- general
-opt.clipboard = "unnamedplus"
 opt.hidden = true
 opt.wrap = false
 opt.updatetime = 50
