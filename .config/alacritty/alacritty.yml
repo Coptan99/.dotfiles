@@ -111,7 +111,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Source Code Pro
+    family: JetBrainsMonoNL Nerd Font
     # family: JetBrains Mono
     # family: UbuntuMono Nerd Font
 
@@ -124,7 +124,7 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
+    family: JetBrainsMonoNL Nerd Font
     # family: JetBrains Mono
     # family: UbuntuMono Nerd Font
 
@@ -137,7 +137,7 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
+    family: JetBrainsMonoNL Nerd Font
     # family: JetBrains Mono
     # family: UbuntuMono Nerd Font
 
@@ -150,7 +150,7 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: Source Code Pro
+    family: JetBrainsMonoNL Nerd Font
     # family: JetBrains Mono
     # family: UbuntuMono Nerd Font
 
