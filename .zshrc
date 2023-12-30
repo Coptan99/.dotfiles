@@ -10,7 +10,7 @@ __git_branch() {
 
 autoload -U colors && colors
 # PS1="%B%{$fg[cyan]%}%c %{$fg[blue]%}\$(__git_branch)%{$fg[green]%}->%{$reset_color%}%b "
-PS1="%{$fg[green]%}->%{$reset_color%}%b %B%{$fg[cyan]%}%c %{$fg[blue]%}\$(__git_branch)"
+# PS1="%{$fg[green]%}->%{$reset_color%}%b %B%{$fg[cyan]%}%c %{$fg[blue]%}\$(__git_branch)"
 # PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magneta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
 HISTFILE=~/.zsh_history
@@ -90,4 +90,4 @@ alias batteryinfo='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
 alias big='find / -type f -size +50M -exec du -h {} \; | sort -n'
 
-# eval "$(starship init zsh)"
+eval "$(starship init zsh)"
