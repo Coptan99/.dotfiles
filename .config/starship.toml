@@ -6,8 +6,20 @@ palette = "catppuccin_mocha"
 right_format = """$all"""
 
 [character]
-success_symbol = "[➜](bold green)"
+success_symbol = "[➜](bold red)"
 error_symbol = "[✗](bold red)"
+
+[directory]
+read_only = " "
+truncation_length = 10
+truncate_to_repo = true # truncates directory to root folder if in github repo
+style = "bold italic blue"
+
+[cmd_duration]
+min_time = 4
+show_milliseconds = false
+disabled = false
+style = "bold italic red"
 
 [directory.substitutions]
 '~/tests/starship-custom' = 'work-project'
@@ -24,7 +36,7 @@ version_format = "v${raw}"
 [rust]
 symbol = " "
 format = 'via [$symbol($version )]($style)'
-style = "bold red"
+style = "bold yellow"
 detect_extensions = ["rs"]
 detect_files = ["Cargo.toml"]
 version_format = "${raw}"
@@ -36,6 +48,7 @@ symbol = "  "
 
 [git_branch]
 symbol = " "
+style = 'bold green'
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
@@ -45,7 +58,7 @@ deleted =  "[${count}-](red)"
 conflicted =  "[${count}~](red)"
 ahead = "⇡${count}"
 behind = "⇣${count}"
-untracked = "[${count}?](blue)"
+untracked = "[${count}?](black)"
 staged = "[${count}+](green)"
 
 [git_state]
