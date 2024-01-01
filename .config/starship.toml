@@ -1,97 +1,24 @@
 add_newline = false
-format = """$directory$git_branch$git_status$git_state$character"""
+format = """$directory$character"""
 palette = "catppuccin_mocha"
 right_format = """$all"""
-
-[character]
-success_symbol = "[➜](bold red)"
-error_symbol = "[✗](bold red)"
-
-[directory]
-read_only = " "
-truncation_length = 10
-truncate_to_repo = true # truncates directory to root folder if in github repo
-style = "bold italic blue"
-
-[cmd_duration]
-min_time = 4
-show_milliseconds = false
-disabled = false
-style = "bold italic red"
-
-[directory.substitutions]
-'~/tests/starship-custom' = 'work-project'
-
-[python]
-symbol = " "
-format = 'via [${symbol}python (${version} )(\($virtualenv\) )]($style)'
-style = "bold yellow"
-pyenv_prefix = "venv "
-python_binary = ["./venv/bin/python", "python", "python3", "python2"]
-detect_extensions = ["py"]
-version_format = "v${raw}"
-
-[rust]
-symbol = " "
-format = 'via [$symbol($version )]($style)'
-style = "bold yellow"
-detect_extensions = ["rs"]
-detect_files = ["Cargo.toml"]
-version_format = "${raw}"
 
 [aws]
 format = 'on [$symbol($profile )(\($region\) )]($style)'
 style = 'bold blue'
 symbol = "  "
 
-[git_branch]
-symbol = " "
-style = 'bold green'
-format = '[$symbol$branch]($style) '
-
-[git_status]
-format = '([\[$all_status$ahead_behind\]]($style) )'
-stashed = "[${count}*](green)"
-modified = "[${count}+](yellow)"
-deleted =  "[${count}-](red)"
-conflicted =  "[${count}~](red)"
-ahead = "⇡${count}"
-behind = "⇣${count}"
-untracked = "[${count}?](black)"
-staged = "[${count}+](green)"
-
-[git_state]
-style =	"bold red"
-format = "[$state( $progress_current/$progress_total) ]($style)"
-rebase = "rebase"
-merge = "merge"
-revert = "revert"
-cherry_pick = "cherry"
-bisect = "bisect"
-am = "am"
-am_or_rebase = "am/rebase"
-
 [golang]
 format = '[ ](bold cyan)'
 
-[hg_branch]
-symbol = " "
+[rust]
+format = '[ ](bold yellow)'
 
-[kubernetes]
-symbol = '☸ '
-disabled = false
-detect_files = ['Dockerfile']
-format = '[$context(\[$namespace\])]($style) '
-[kubernetes.context_aliases]
-'arn:aws:eks:us-west-2:577926974532:cluster/gal-kub-demo-cluster' = 'gal'
+[git_branch]
+symbol = " "
 
 [docker_context]
 disabled = true
-
-[nodejs]
-format = "via [ Node.js $version](bold green) "
-detect_files = ["package.json", ".node-version"]
-detect_folders = ["node_modules"]
 
 [palettes.catppuccin_mocha]
 rosewater = "#f5e0dc"
