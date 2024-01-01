@@ -11,6 +11,9 @@ symbol = "  "
 [golang]
 format = '[ ](bold cyan)'
 
+[lua]
+format = '[ ](bold blue)'
+
 [rust]
 format = '[ ](bold yellow)'
 
