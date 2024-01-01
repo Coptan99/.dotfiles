@@ -1,8 +1,6 @@
 add_newline = false
-# A minimal left prompt
-format = """$directory$character"""
+format = """$directory$git_branch$git_status$git_state$character"""
 palette = "catppuccin_mocha"
-# move the rest of the prompt to the right
 right_format = """$all"""
 
 [character]
@@ -49,6 +47,7 @@ symbol = "  "
 [git_branch]
 symbol = " "
 style = 'bold green'
+format = '[$symbol$branch]($style) '
 
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style) )'
