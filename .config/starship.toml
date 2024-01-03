@@ -3,6 +3,10 @@ format = """$directory$character"""
 palette = "catppuccin_mocha"
 right_format = """$all"""
 
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"
+
 [aws]
 format = 'on [$symbol($profile )(\($region\) )]($style)'
 style = 'bold blue'

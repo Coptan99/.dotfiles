@@ -5,5 +5,5 @@ dunst &
 pipewire &
 xbacklight -set 5%
 picom &
-feh --bg-fill ~/Pictures/wallpapers/main_wallpaper.jpg
+feh --bg-fill ~/Pictures/onlyfans.png
 dbus-run-session i3
