@@ -57,7 +57,7 @@ function __history_previous_command_arguments
   end
 end
 
-# # The bindings for !! and !$
+# The bindings for !! and !$
 if [ "$fish_key_bindings" = "fish_vi_key_bindings" ];
   bind -Minsert ! __history_previous_command
   bind -Minsert '$' __history_previous_command_arguments
@@ -66,9 +66,16 @@ else
   bind '$' __history_previous_command_arguments
 end
 
-bind \cf 'tmux-session\n'
-bind \cs '$EDITOR (fzf-tmux)\n'
-bind \ct 'if test -f TODO.md; $EDITOR TODO.md; else; notes todo; end\n'
+# function to use fzf to start a tmux session
+function __tmux-sessionizer
+    tmux-session
+end
+
+bind -Minsert \cf __tmux-sessionizer
+
+### TODO: Add fuctions to start these keybindings ###
+# bind \cs '$EDITOR (fzf-tmux)\n'
+# bind \ct 'if test -f TODO.md; $EDITOR TODO.md; else; notes todo; end\n'
 
 # # Function for creating a backup file
 # # ex: backup file.txt
