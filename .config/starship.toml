@@ -1,20 +1,30 @@
+add_newline = false
+
+[line_break]
+disabled = true
+
 [username]
-style_user = "green bold"
-style_root = "red bold"
-format = "[$user]($style) "
-disabled = false
-show_always = true
+disabled = true
+# style_user = "green bold"
+# style_root = "red bold"
+# format = "[$user]($style) "
+# disabled = false
+# show_always = true
 
 [hostname]
 ssh_only = false
-format = 'on [$hostname](bold purple) '
+# format = 'on [$hostname](bold purple) '
 trim_at = "."
-disabled = false
+disabled = true
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
 success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 error_symbol = "[✗](bold red)"
+
+[git_branch]
+symbol = " "
+format = '\[[$symbol$branch]($style)\]'
 
 [git_status]
 untracked = '[ $count](bold yellow) '
@@ -53,7 +63,7 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
-truncation_length = 10
+truncation_length = 1
 truncate_to_repo = true # truncates directory to root folder if in github repo
 style = "bold italic blue"
 
@@ -67,9 +77,6 @@ symbol = " "
 symbol = " "
 
 [fossil_branch]
-symbol = " "
-
-[git_branch]
 symbol = " "
 
 [golang]
@@ -150,7 +157,8 @@ Unknown = " "
 Windows = "󰍲 "
 
 [package]
-symbol = "󰏗 "
+disabled = true
+# symbol = "󰏗 "
 
 [python]
 symbol = " "
