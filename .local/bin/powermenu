@@ -7,7 +7,7 @@ case "$chosen" in
 	"  Restart") doas reboot ;;
 	"  Suspend") doas zzz ;;
 	"  Hibernate") doas zzz -H ;;
-	"  Log Out") killall i3 ;;
+	"  Log Out") killall dwm ;;
 	"  Lock") slock ;;
 	*) exit 1 ;;
 esac

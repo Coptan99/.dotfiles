@@ -1,9 +1,8 @@
 setxkbmap -layout us,ara -option grp:win_space_toggle,caps:escape,grp_led:caps
 sxhkd &
-dwmblocks &
 dunst &
 pipewire &
-xbacklight -set 5%
-picom &
-feh --bg-fill ~/Pictures/onlyfans.png
-dbus-run-session i3
+xbacklight -set 2%
+feh --bg-fill ~/Pictures/wallpapers/0277.jpg
+dbus-update-activation-environment --all
+ssh-agent dwm

@@ -1,11 +1,11 @@
-alt + Return
+super + Return
     $TERMINAL
 
-alt + w
+super + w
     $BROWSER
 
 XF86MonBrightness{Up,Down}
-    brillo -q -{A, U} 2
+    brillo -q {-A, -U} 2
 
 XF86Audio{Raise,Lower}Volume
     pactl set-sink-volume @DEFAULT_SINK@ {+, -}5%
@@ -19,23 +19,23 @@ XF86Calculator
 Print
     $HOME/.local/bin/screenshot
 
-alt + Print
+super + Print
     $HOME/.local/bin/screenshot copyfull
 
 shift + Print
     $HOME/.local/bin/screenshot copy
 
-alt + shift + Print
+super + shift + Print
     $HOME/.local/bin/screenshot window
 
-alt + m
+super + m
     $HOME/.local/bin/mount.sh
 
-alt + shift + BackSpace
+super + shift + BackSpace
     $HOME/.local/bin/powermenu
 
-alt + n
+super + n
     alacritty -e lf
 
-alt + t
+super + t
     alacritty -e gotop

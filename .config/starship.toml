@@ -1,30 +1,20 @@
-add_newline = false
-
-[line_break]
-disabled = true
-
 [username]
-disabled = true
-# style_user = "green bold"
-# style_root = "red bold"
-# format = "[$user]($style) "
-# disabled = false
-# show_always = true
+style_user = "green bold"
+style_root = "red bold"
+format = "[$user]($style) "
+disabled = false
+show_always = true
 
 [hostname]
 ssh_only = false
-# format = 'on [$hostname](bold purple) '
+format = 'on [$hostname](bold purple) '
 trim_at = "."
-disabled = true
+disabled = false
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
 success_symbol = "[➜](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
 error_symbol = "[✗](bold red)"
-
-[git_branch]
-symbol = " "
-format = '\[[$symbol$branch]($style)\]'
 
 [git_status]
 untracked = '[ $count](bold yellow) '
@@ -63,7 +53,7 @@ symbol = " "
 
 [directory]
 read_only = " 󰌾"
-truncation_length = 1
+truncation_length = 10
 truncate_to_repo = true # truncates directory to root folder if in github repo
 style = "bold italic blue"
 
@@ -77,6 +67,9 @@ symbol = " "
 symbol = " "
 
 [fossil_branch]
+symbol = " "
+
+[git_branch]
 symbol = " "
 
 [golang]
@@ -115,50 +108,8 @@ symbol = " "
 [nodejs]
 symbol = " "
 
-[os.symbols]
-Alpaquita = " "
-Alpine = " "
-Amazon = " "
-Android = " "
-Arch = " "
-Artix = " "
-CentOS = " "
-Debian = " "
-DragonFly = " "
-Emscripten = " "
-EndeavourOS = " "
-Fedora = " "
-FreeBSD = " "
-Garuda = "󰛓 "
-Gentoo = " "
-HardenedBSD = "󰞌 "
-Illumos = "󰈸 "
-Linux = " "
-Mabox = " "
-Macos = " "
-Manjaro = " "
-Mariner = " "
-MidnightBSD = " "
-Mint = " "
-NetBSD = " "
-NixOS = " "
-OpenBSD = "󰈺 "
-openSUSE = " "
-OracleLinux = "󰌷 "
-Pop = " "
-Raspbian = " "
-Redhat = " "
-RedHatEnterprise = " "
-Redox = "󰀘 "
-Solus = "󰠳 "
-SUSE = " "
-Ubuntu = " "
-Unknown = " "
-Windows = "󰍲 "
-
 [package]
-disabled = true
-# symbol = "󰏗 "
+symbol = "󰏗 "
 
 [python]
 symbol = " "
