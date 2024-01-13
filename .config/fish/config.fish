@@ -21,7 +21,7 @@ set -gx EDITOR (which nvim)
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 set BROWSER "firefox"
-set TERMINAL "alacritty"
+set TERMINAL "st"
 
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings

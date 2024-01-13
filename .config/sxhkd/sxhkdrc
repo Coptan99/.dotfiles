@@ -35,7 +35,7 @@ super + shift + BackSpace
     $HOME/.local/bin/powermenu
 
 super + n
-    alacritty -e lf
+    st -e lf
 
 super + t
-    alacritty -e gotop
+    st -e gotop
