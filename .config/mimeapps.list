@@ -21,6 +21,9 @@ application/x-extension-shtml=userapp-Firefox-OVAEE2.desktop
 application/xhtml+xml=userapp-Firefox-OVAEE2.desktop
 application/x-extension-xhtml=userapp-Firefox-OVAEE2.desktop
 application/x-extension-xht=userapp-Firefox-OVAEE2.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-FOCYH2.desktop
+message/rfc822=userapp-Thunderbird-FOCYH2.desktop
+x-scheme-handler/mid=userapp-Thunderbird-FOCYH2.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Firefox-OVAEE2.desktop;
@@ -33,3 +36,5 @@ application/x-extension-shtml=userapp-Firefox-OVAEE2.desktop;
 application/xhtml+xml=userapp-Firefox-OVAEE2.desktop;
 application/x-extension-xhtml=userapp-Firefox-OVAEE2.desktop;
 application/x-extension-xht=userapp-Firefox-OVAEE2.desktop;
+x-scheme-handler/mailto=userapp-Thunderbird-FOCYH2.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-FOCYH2.desktop;

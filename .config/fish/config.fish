@@ -8,11 +8,14 @@ end
 # First line removes the path; second line sets it.  Without the first line,
 # your path gets massive and fish becomes very slow.
 set -e fish_user_paths
-set -U fish_user_paths $HOME/.bin  $HOME/.local/bin $HOME/Applications /var/lib/flatpak/exports/bin/ $fish_user_paths $HOME/.cargo/bin
+set -U fish_user_paths $HOME/.bin $(find ~/.local/bin -type d | paste -sd ':' -) $HOME/Applications /var/lib/flatpak/exports/bin/ $HOME/.cargo/bin $fish_user_paths
 
 ### EXPORT ###
 set fish_greeting
 set TERM "xterm-256color"
+set VKD3D_CONFIG "dxr11,dxr"
+set PROTON_ENABLE_NVAPI "1"
+set PROTON_ENABLE_NGX_UPDATER "1"
 
 ### Setting manpager to nvim ###
 set -x MANPAGER "nvim +Man!"

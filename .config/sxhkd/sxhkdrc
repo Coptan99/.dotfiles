@@ -1,17 +1,20 @@
-super + Return
+alt + Return
     $TERMINAL
 
-super + w
+alt + w
     $BROWSER
 
-XF86MonBrightness{Up,Down}
-    brillo -q {-A, -U} 2
+XF86MonBrightnessUp
+    brillo -A 2
+
+XF86MonBrightnessDown
+    brillo -U 2
 
 XF86Audio{Raise,Lower}Volume
-    pactl set-sink-volume @DEFAULT_SINK@ {+, -}5%
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%{+,-}; kill -44 $(pidof dwmblocks)
 
 XF86AudioMute
-    pactl set-sink-mute @DEFAULT_SINK@ toggle
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
 
 XF86Calculator
     xcalc
@@ -19,23 +22,23 @@ XF86Calculator
 Print
     $HOME/.local/bin/screenshot
 
-super + Print
+alt + Print
     $HOME/.local/bin/screenshot copyfull
 
 shift + Print
     $HOME/.local/bin/screenshot copy
 
-super + shift + Print
+alt + shift + Print
     $HOME/.local/bin/screenshot window
 
-super + m
+alt + m
     $HOME/.local/bin/mount.sh
 
-super + shift + BackSpace
+alt + shift + BackSpace
     $HOME/.local/bin/powermenu
 
-super + n
+alt + n
     st -e lf
 
-super + t
+alt + t
     st -e gotop
