@@ -17,6 +17,7 @@ set VKD3D_CONFIG "dxr11,dxr"
 set PROTON_ENABLE_NVAPI "1"
 set PROTON_ENABLE_NGX_UPDATER "1"
 
+
 ### Setting manpager to nvim ###
 set -x MANPAGER "nvim +Man!"
 
@@ -24,7 +25,7 @@ set -gx EDITOR (which nvim)
 set -gx VISUAL $EDITOR
 set -gx SUDO_EDITOR $EDITOR
 set BROWSER "firefox"
-set TERMINAL "st"
+set TERMINAL "alacritty"
 
 ### SET EITHER DEFAULT EMACS MODE OR VI MODE ###
 function fish_user_key_bindings

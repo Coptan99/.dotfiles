@@ -8,4 +8,4 @@ pipewire &
 dwmblocks &
 brillo -S 2%
 xcompmgr &
-exec dwm
+exec i3
