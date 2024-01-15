@@ -1,4 +1,7 @@
-alt + b
+alt + Return
+    $TERMINAL
+
+alt + w
     $BROWSER
 
 XF86MonBrightnessUp
@@ -6,6 +9,12 @@ XF86MonBrightnessUp
 
 XF86MonBrightnessDown
     brillo -U 2
+
+XF86Audio{Raise,Lower}Volume
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%{+,-}; kill -44 $(pidof dwmblocks)
+
+XF86AudioMute
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
 
 XF86Calculator
     xcalc
@@ -22,11 +31,14 @@ shift + Print
 alt + shift + Print
     $HOME/.local/bin/screenshot window
 
+alt + m
+    $HOME/.local/bin/mount.sh
+
 alt + shift + BackSpace
     $HOME/.local/bin/powermenu
 
 alt + n
-    alacritty -e lf
+    st -e lf
 
 alt + t
-    alacritty -e htop
+    st -e gotop
