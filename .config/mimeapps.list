@@ -24,6 +24,7 @@ application/x-extension-xht=userapp-Firefox-OVAEE2.desktop
 x-scheme-handler/mailto=userapp-Thunderbird-FOCYH2.desktop
 message/rfc822=userapp-Thunderbird-FOCYH2.desktop
 x-scheme-handler/mid=userapp-Thunderbird-FOCYH2.desktop
+x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_var_lib_snapd_snap_eclipse_73_.desktop
 
 [Added Associations]
 x-scheme-handler/http=userapp-Firefox-OVAEE2.desktop;

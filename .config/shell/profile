@@ -1,0 +1,31 @@
+#!/bin/sh
+
+export BROWSER="firefox"
+export TERMINAL="st"
+export PATH="$PATH:${$(find ~/.local/bin -maxdepth 1 -type d -printf %p:)%%:}"
+export MANPAGER="nvim +Man!"
+export EDITOR="nvim"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_CACHE_HOME="$HOME/.cache"
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+export HISTFILE="$XDG_DATA_HOME/history"
+
+if [ -d "$HOME/.local/bin" ] ;
+  then PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
+fi
+
+if [ -d "/var/lib/flatpak/exports/bin/" ] ;
+  then PATH="/var/lib/flatpak/exports/bin/:$PATH"
+fi
+
+if [ -d "$HOME/.cargo/bin" ] ;
+  then PATH="$HOME/.cargo/bin:$PATH"
+fi
+
+if [ -d "$HOME/.bin" ] ;
+  then PATH="$HOME/.bin:$PATH"
+fi
+
+[ -f $HOME/.zshrc ] && . $HOME/.zshrc
+[[ ! $DISPLAY && $(tty) = "/dev/tty1" ]] && startx

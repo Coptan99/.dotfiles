@@ -7,9 +7,9 @@ stty stop undef
 autoload -U colors && colors
 PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magneta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
 
-HISTFILE=~/.zsh_history
 HISTSIZE=10000000
 SAVEHIST=10000000
+HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 
 autoload -U compinit
 zstyle ":completion:*" menu select
@@ -90,22 +90,6 @@ if [ -d "$plugdir" ]; then
 	fi
 fi
 unset plugdir
-
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
-fi
-
-if [ -d "/var/lib/flatpak/exports/bin/" ] ;
-  then PATH="/var/lib/flatpak/exports/bin/:$PATH"
-fi
-
-if [ -d "$HOME/.cargo/bin" ] ;
-  then PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-if [ -d "$HOME/.bin" ] ;
-  then PATH="$HOME/.bin:$PATH"
-fi
 
 # bindkey -s "^f" 'cd "$(dirname "$(fzf-tmux)")"\n'
 bindkey -s "^f" 'tmux-session\n'

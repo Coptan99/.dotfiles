@@ -37,7 +37,7 @@ alt + m
 alt + shift + BackSpace
     $HOME/.local/bin/powermenu
 
-alt + n
+alt + r
     st -e lf
 
 alt + t
