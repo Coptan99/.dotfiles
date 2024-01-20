@@ -75,7 +75,7 @@ bindkey "^[[1;5C" forward-word
 zle -N edit-command-line
 bindkey "^e" edit-command-line
 
-plugdir="/usr/share/zsh/plugins"
+plugdir="$HOME/.config/zsh"
 if [ -d "$plugdir" ]; then
 	[ -f "$plugdir/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh" ] &&
 		. "$plugdir/zsh-syntax-highlighting/zsh-syntax-highlighting.plugin.zsh"
