@@ -1,0 +1,40 @@
+#!/bin/sh
+
+# neovim for vim if available
+[ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
+
+# sudo not required for some system commands
+for command in mount umount sv pacman su poweroff reboot ; do
+    alias $command="sudo $command"
+done; unset $command
+
+# Some verbosity
+alias \
+        cp="cp -iv" \
+        mv="mv -iv" \
+        rm="rm -vI" \
+        mkd="mkdir -pv" \
+        yt="yt-dlp --embed-metadata -i" \
+        ffmpeg="ffmpeg -hide_banner"
+
+# Add some colors when you can
+alias \
+        ls="ls -hN --color=auto --group-directories-first" \
+        grep="grep --color=auto" \
+        ip="ip -color=auto" \
+        diff="diff --color=auto"
+
+# Some abbreviations
+alias \
+        ka="killall" \
+        g="git" \
+        sdn="shutdown -h now" \
+        e="$EDITOR" \
+        v="$EDITOR" \
+        p="pacman" \
+        z="zathura"
+
+# Some custom aliases
+alias \
+        dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
+        big="find / -type f -size +50M -exec du -h {} \; | sort -n"

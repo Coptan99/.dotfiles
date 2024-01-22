@@ -11,13 +11,24 @@ HISTSIZE=10000000
 SAVEHIST=10000000
 HISTFILE="${XDG_CACHE_HOME:-$HOME/.cache}/zsh/history"
 
+# Load aliases if available
+[ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
+
 autoload -U compinit
 zstyle ":completion:*" menu select
 zmodload zsh/complist
 compinit
 _comp_options+=(globdots)
 
-set -o vi
+# vi mode
+bindkey -v
+export KEYTIMEOUT=1
+
+# Vim keybindings in tab complete menu:
+bindkey -M menuselect "h" vi-backward-char
+bindkey -M menuselect "k" vi-up-line-or-history
+bindkey -M menuselect "l" vi-forward-char
+bindkey -M menuselect "j" vi-down-line-or-history
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select () {
@@ -60,10 +71,6 @@ bindkey -M vicmd '^[[P' vi-delete-char
 bindkey -M vicmd '^e' edit-command-line
 bindkey -M visual '^[[P' vi-delete
 
-bindkey -M menuselect "h" vi-backward-char
-bindkey -M menuselect "k" vi-up-line-or-history
-bindkey -M menuselect "l" vi-forward-char
-bindkey -M menuselect "j" vi-down-line-or-history
 bindkey -M menuselect "^[[Z" reverse-menu-complete
 
 bindkey -v "^?" backward-delete-char
@@ -74,6 +81,12 @@ bindkey "^[[1;5C" forward-word
 # autoload edit-command-line
 zle -N edit-command-line
 bindkey "^e" edit-command-line
+
+
+# bindkey -s "^f" 'cd "$(dirname "$(fzf-tmux)")"\n'
+bindkey -s "^f" 'tmux-session\n'
+bindkey -s "^s" '$EDITOR "$(fzf-tmux)"\n'
+bindkey -s "^t" '[ -f TODO.md ] && $EDITOR TODO.md || notes todo\n'
 
 plugdir="$HOME/.config/zsh"
 if [ -d "$plugdir" ]; then
@@ -90,25 +103,3 @@ if [ -d "$plugdir" ]; then
 	fi
 fi
 unset plugdir
-
-# bindkey -s "^f" 'cd "$(dirname "$(fzf-tmux)")"\n'
-bindkey -s "^f" 'tmux-session\n'
-bindkey -s "^s" '$EDITOR "$(fzf-tmux)"\n'
-bindkey -s "^t" '[ -f TODO.md ] && $EDITOR TODO.md || notes todo\n'
-
-alias vim='nvim'
-alias ls='ls --color=always --group-directories-first' # my preferred listing
-alias la='ls -a --color=always --group-directories-first'  # all files and dirs
-alias ll='ls -l --color=always --group-directories-first'  # long format
-alias lt='tree -C' # tree listing
-
-alias i='doas xbps-install -S'
-alias u='i; doas xbps-install -u xbps; doas xbps-install -u'
-alias q='doas xbps-query -Rs'
-alias r='doas xbps-remove -R'
-
-alias battery="upower -i /org/freedesktop/UPower/devices/battery_BAT0 | awk '/percentage/ {print $2}'"
-alias batteryinfo='upower -i /org/freedesktop/UPower/devices/battery_BAT0'
-
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME'
-alias big='find / -type f -size +50M -exec du -h {} \; | sort -n'
