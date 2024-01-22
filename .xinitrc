@@ -10,4 +10,5 @@ pipewire &
 dwmblocks &
 brillo -S 2%
 xcompmgr &
-exec dwm
+dbus-update-activation-environment --all
+ssh-agent dwm
