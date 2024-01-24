@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-
-eng=$(xkblayout-state print "%n")
-
-if [ "$eng" = "English" ]; then
-    echo "EN"
-else
-    echo "AR"
-fi
