@@ -29,16 +29,16 @@ XF86Calculator
     xcalc
 
 Print
-    $HOME/.local/bin/screenshot
-
-super + Print
     $HOME/.local/bin/screenshot copyfull
 
-shift + Print
+super + Print
     $HOME/.local/bin/screenshot copy
 
-super + shift + Print
+shift + Print
     $HOME/.local/bin/screenshot window
+
+ctrl + Print
+    $HOME/.local/bin/screenshot
 
 super + m
     $HOME/.local/bin/mount.sh
