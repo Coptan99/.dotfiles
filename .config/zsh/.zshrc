@@ -4,8 +4,13 @@ setopt prompt_subst
 setopt share_history
 stty stop undef
 
+__git_branch() {
+	br="$(git symbolic-ref HEAD --short 2>/dev/null)"
+	[ "$br" ] && echo "($br) "
+}
+
 autoload -U colors && colors
-PS1="%B%{$fg[red]%}[%{$fg[yellow]%}%n%{$fg[green]%}@%{$fg[blue]%}%M %{$fg[magneta]%}%~%{$fg[red]%}]%{$reset_color%}$%b "
+PS1="%B%{$fg[cyan]%}%c %{$fg[blue]%}\$(__git_branch)%{$fg[green]%}>%{$reset_color%}%b "
 
 HISTSIZE=10000000
 SAVEHIST=10000000
