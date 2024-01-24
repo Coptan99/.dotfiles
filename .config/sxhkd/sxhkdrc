@@ -44,7 +44,7 @@ super + m
     $HOME/.local/bin/mount.sh
 
 super + shift + BackSpace
-    $HOME/.local/bin/powermenu
+    $HOME/.local/bin/exit.sh
 
 super + r
     $TERMINAL -e lf
