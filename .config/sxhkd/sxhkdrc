@@ -1,7 +1,7 @@
-alt + Return
+super + Return
     $TERMINAL
 
-alt + w
+super + w
     $BROWSER
 
 XF86MonBrightnessUp
@@ -22,23 +22,23 @@ XF86Calculator
 Print
     $HOME/.local/bin/screenshot
 
-alt + Print
+super + Print
     $HOME/.local/bin/screenshot copyfull
 
 shift + Print
     $HOME/.local/bin/screenshot copy
 
-alt + shift + Print
+super + shift + Print
     $HOME/.local/bin/screenshot window
 
-alt + m
+super + m
     $HOME/.local/bin/mount.sh
 
-alt + shift + BackSpace
+super + shift + BackSpace
     $HOME/.local/bin/powermenu
 
-alt + r
+super + r
     st -e lf
 
-alt + t
+super + t
     st -e gotop
