@@ -22,6 +22,9 @@ XF86Audio{Raise,Lower}Volume
 XF86AudioMute
     wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
 
+super + {equal, minus, BackSpace}
+    volume {up, down, toggle}
+
 XF86Calculator
     xcalc
 

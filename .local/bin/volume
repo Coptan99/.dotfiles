@@ -1,0 +1,15 @@
+#!/bin/sh
+
+arg=$1
+case "$arg" in
+    "up") wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+
+    ;;
+    "down") wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-
+    ;;
+    "toggle") wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
+    ;;
+    *) exit 1;;
+esac
+
+# Refresh dwmblocks
+kill -44 $(pidof dwmblocks)
