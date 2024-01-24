@@ -1,8 +1,14 @@
 super + Return
     $TERMINAL
 
+super + v
+    $TERMINAL -e $EDITOR
+
 super + w
     $BROWSER
+
+super + d
+    dmenu_run
 
 XF86MonBrightnessUp
     brillo -A 2
@@ -38,7 +44,7 @@ super + shift + BackSpace
     $HOME/.local/bin/powermenu
 
 super + r
-    st -e lf
+    $TERMINAL -e lf
 
 super + t
-    st -e gotop
+    $TERMINAL -e gotop
