@@ -47,7 +47,7 @@ super + shift + BackSpace
     $HOME/.local/bin/exit.sh
 
 super + r
-    $TERMINAL -e lf
+    $TERMINAL -e nnn -Rr
 
 super + t
     $TERMINAL -e gotop
