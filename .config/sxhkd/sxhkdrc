@@ -16,6 +16,9 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
     brillo -U 2
 
+super + {plus,underscore}
+    brillo -{A,U} 2
+
 XF86Audio{Raise,Lower}Volume
     wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%{+,-}; kill -44 $(pidof dwmblocks)
 
