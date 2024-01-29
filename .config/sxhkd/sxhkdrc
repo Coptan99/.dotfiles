@@ -32,15 +32,6 @@ XF86Calculator
     xcalc
 
 Print
-    $HOME/.local/bin/screenshot copyfull
-
-super + Print
-    $HOME/.local/bin/screenshot copy
-
-shift + Print
-    $HOME/.local/bin/screenshot window
-
-ctrl + Print
     $HOME/.local/bin/screenshot
 
 super + m
