@@ -11,6 +11,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_DATA_HOME/history"
 
+export NNN_FIFO="/tmp/nnn.fifo"
+
 if [ -d "$HOME/.local/bin" ] ;
   then PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
 fi
