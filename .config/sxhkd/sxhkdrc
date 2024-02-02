@@ -31,6 +31,9 @@ super + {equal, minus, BackSpace}
 XF86Calculator
     xcalc
 
+super + x
+    slock
+
 Print
     $HOME/.local/bin/screenshot
 
