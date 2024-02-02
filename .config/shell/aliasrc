@@ -4,9 +4,12 @@
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 # sudo not required for some system commands
-for command in mount umount sv pacman su poweroff reboot ; do
-    alias $command="sudo $command"
-done; unset $command
+sudocmd="sudo"
+command -v doas >/dev/null 2>&1 && sudocmd="doas"
+for cmd in su xbps-{install,remove} {,v}sv {,u}mount updatedb reboot poweroff shutdown; do
+	alias $cmd="$sudocmd $cmd"
+done
+unset sudocmd cmd
 
 # Some verbosity
 alias \
@@ -31,7 +34,10 @@ alias \
         sdn="shutdown -h now" \
         e="$EDITOR" \
         v="$EDITOR" \
-        p="pacman" \
+        i="xbps-install -S" \
+        u="i; xbps-install -u xbps; xbps-install -u" \
+        r="xbps-remove -R" \
+        q="xbps-query -Rs" \
         z="zathura" \
         nnn="nnn -Rr"
 
