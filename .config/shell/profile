@@ -10,11 +10,16 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_DATA_HOME/history"
+export GOPATH=$HOME/go
 
 export NNN_FIFO="/tmp/nnn.fifo"
 
 if [ -d "$HOME/.local/bin" ] ;
   then PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
+fi
+
+if [ -d "$HOME/go" ] ;
+    then PATH="$PATH:$GOPATH/bin"
 fi
 
 if [ -d "/var/lib/flatpak/exports/bin/" ] ;
