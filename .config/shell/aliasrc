@@ -35,7 +35,7 @@ alias \
         e="$EDITOR" \
         v="$EDITOR" \
         i="xbps-install -S" \
-        u="i; xbps-install -u xbps; xbps-install -u" \
+        u="xbps-install -u xbps; xbps-install -Su" \
         r="xbps-remove -R" \
         q="xbps-query -Rs" \
         z="zathura" \
