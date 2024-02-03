@@ -1,12 +1,7 @@
-#!/usr/bin/bash
+#!/bin/sh
 
-choice=$(echo -e "Shutdown\nReboot\nExit" | dmenu -p "Select an action: ")
+choice=$(echo "Shutdown\nReboot\nExit" | dmenu -i -p "Select an action: ")
 
-case $choice in
-    Shutdown)
-        doas poweroff ;;
-    Reboot)
-        doas reboot ;;
-    Exit)
-        pkill dwm ;;
-esac
+[[ -d $choice == "Shutdown" ]] && doas poweroff
+[[ -d $choice == "Reboot" ]] && doas reboot
+[[ -d $choice == "Exit" ]] && pkill dwm
