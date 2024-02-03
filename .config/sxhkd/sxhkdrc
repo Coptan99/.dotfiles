@@ -47,4 +47,4 @@ super + r
     $TERMINAL -e nnn -Rr
 
 super + t
-    $TERMINAL -e gotop
+    $TERMINAL -e htop
