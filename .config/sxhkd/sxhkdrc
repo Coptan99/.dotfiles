@@ -16,7 +16,7 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
     brillo -U 2
 
-super + {plus,underscore}
+control + {equal,minus}
     brillo -{A,U} 2
 
 XF86Audio{Raise,Lower}Volume
@@ -25,8 +25,8 @@ XF86Audio{Raise,Lower}Volume
 XF86AudioMute
     wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
 
-super + {equal, minus, BackSpace}
-    volume {up, down, toggle}
+super + {equal, minus, BackSpace, plus}
+    volume {up, down, toggle, togglemic}
 
 XF86Calculator
     xcalc
@@ -48,3 +48,6 @@ super + r
 
 super + t
     $TERMINAL -e htop
+
+super + M
+    mpv $(xclip -o)

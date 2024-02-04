@@ -8,6 +8,16 @@ case "$arg" in
     ;;
     "toggle") wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     ;;
+    "togglemic")
+        if [ -f /tmp/mic.pid ]; then
+            rm -rf /tmp/mic.pid
+        else
+            echo $! > /tmp/mic.pid
+        fi
+        wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+        kill -43 $(pidof dwmblocks)
+        exit
+    ;;
     *) exit 1;;
 esac
 
