@@ -12,7 +12,7 @@ case "$arg" in
         if [ -f /tmp/mic.pid ]; then
             rm -rf /tmp/mic.pid
         else
-            echo $! > /tmp/mic.pid
+            echo "[MIC MUTED]" > /tmp/mic.pid
         fi
         wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
         kill -43 $(pidof dwmblocks)
