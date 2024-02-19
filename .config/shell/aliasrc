@@ -39,7 +39,8 @@ alias \
         r="xbps-remove -R" \
         q="xbps-query -Rs" \
         z="zathura" \
-        nnn="nnn -Rr"
+        nnn="nnn -Rr" \
+        devuploads='bash <(curl -s https://devuploads.com/upload.sh)'
 
 # Some custom aliases
 alias \
