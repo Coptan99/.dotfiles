@@ -10,7 +10,7 @@ __git_branch() {
 }
 
 autoload -U colors && colors
-PS1="%B%{$fg[cyan]%}%c %{$fg[blue]%}\$(__git_branch)%{$fg[red]%}>%{$reset_color%}%b "
+# PS1="%B%{$fg[cyan]%}%c %{$fg[blue]%}\$(__git_branch)%{$fg[red]%}>%{$reset_color%}%b "
 
 HISTSIZE=10000000
 SAVEHIST=10000000
@@ -108,3 +108,4 @@ if [ -d "$plugdir" ]; then
 	fi
 fi
 unset plugdir
+eval "$(starship init zsh)"
