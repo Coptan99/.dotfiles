@@ -1,1 +1,2 @@
-require("coptan")
+require("coptan.core")
+require("coptan.lazy")
