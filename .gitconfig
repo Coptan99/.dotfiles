@@ -1,7 +1,7 @@
 [user]
 	email = omarcoptan9@gmail.com
 	name = Omar Mohamed
-	signingkey = /home/coptan/.ssh/id_rsa.pub
+	signingkey = ~/.ssh/id_rsa.pub
 [commit]
     gpgsign = true
 [gpg]
