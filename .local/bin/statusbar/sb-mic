@@ -1,0 +1,6 @@
+#!/bin/sh
+
+FILE=/tmp/mic.pid
+if [[ -f "$FILE" ]]; then
+    printf "[Mic Muted]"
+fi

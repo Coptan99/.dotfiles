@@ -1,9 +1,10 @@
 #!/bin/sh
 
+# Prints the current volume or 🔇 if muted.
 vol="$(wpctl get-volume @DEFAULT_AUDIO_SINK@)"
 
 # If muted, print 🔇 and exit.
-[ "$vol" != "${vol%\[MUTED\]}" ] && echo "[MUTED]" && exit
+[ "$vol" != "${vol%\[MUTED\]}" ] && echo "[Muted]" && exit
 
 vol="${vol#Volume: }"
 

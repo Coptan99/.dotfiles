@@ -2,11 +2,11 @@
 
 setxkbmap -layout us,ara -option grp:win_space_toggle,caps:escape,grp_led:caps
 sxhkd &
-xrandr --dpi 96
 dunst &
-mpd &
 pipewire &
+mpd &
 dwmblocks &
-brillo -S 2%
+xbacklight -set 5
+xautolock -time 10 -locker slock &
 dbus-update-activation-environment --all
-ssh-agent dwm
+dbus-launch ssh-agent dwm

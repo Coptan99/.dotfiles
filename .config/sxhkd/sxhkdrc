@@ -4,53 +4,52 @@ super + Return
 super + v
     $TERMINAL -e $EDITOR
 
-super + w
-    $BROWSER
-
 super + d
     dmenu_run
 
-XF86MonBrightnessUp
-    brillo -A 2
-
-XF86MonBrightnessDown
-    brillo -U 2
-
-control + {equal,minus}
-    brillo -{A,U} 2
-
-XF86Audio{Raise,Lower}Volume
-    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%{+,-}; kill -44 $(pidof dwmblocks)
-
-XF86AudioMute
-    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle; kill -44 $(pidof dwmblocks)
+super + w
+    $BROWSER
 
 super + {equal, minus, BackSpace, plus}
-    volume {up, down, toggle, togglemic}
-
-XF86Calculator
-    xcalc
-
-super + x
-    slock
-
-Print
-    $HOME/.local/bin/screenshot
-
-super + m
-    $HOME/.local/bin/mount.sh
-
-super + n
-    $TERMINAL -e ncmpcpp
+    $HOME/.local/bin/volume.sh {up, down, toggle, togglemic}
 
 super + shift + BackSpace
     $HOME/.local/bin/exit.sh
 
-super + r
+super + m
+    $HOME/.local/bin/mount.sh
+
+super + f
     $TERMINAL -e nnn -Rr
 
-super + t
-    $TERMINAL -e htop
+Print
+    $HOME/.local/bin/screenshot
 
-super + M
-    mpv $(xclip -o)
+super + x
+    slock
+
+super + n
+    $TERMINAL -e ncmpcpp
+
+super + N
+    $TERMINAL -e nmtui
+
+super + t
+    $TERMINAL -e btop
+
+
+control + {equal,minus}
+    xbacklight -{inc,dec} 2
+
+XF86MonBrightness{Up,Down}
+    xbacklight -{inc,dec} 2
+
+XF86Audio{Raise,Lower}Volume
+    $HOME/.local/bin/volume.sh {up, down}
+
+XF86AudioMute
+    $HOME/.local/bin/volume.sh toggle
+
+XF86Calculator
+    xcalc
+

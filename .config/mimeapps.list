@@ -1,41 +1,25 @@
 [Default Applications]
-image/png=img.desktop
-image/jpg=img.desktop
-image/jpeg=img.desktop
-image/gif=img.desktop
-text/plain=text.desktop
-text/x-shellscript=text.desktop
-inode/directory=file.desktop
-image/vnd.djvu=pdf.desktop
-application/pdf=pdf.desktop
-application/epub+zip=pdf.desktop
-application/postscript=pdf.desktop
-application/x-ms-dos-executable=Steam Linux Runtime 3.0 (sniper).desktop;Proton Experimental.desktop;
-x-scheme-handler/http=userapp-Firefox-OVAEE2.desktop
-x-scheme-handler/https=userapp-Firefox-OVAEE2.desktop
-x-scheme-handler/chrome=userapp-Firefox-OVAEE2.desktop
-text/html=userapp-Firefox-OVAEE2.desktop
-application/x-extension-htm=userapp-Firefox-OVAEE2.desktop
-application/x-extension-html=userapp-Firefox-OVAEE2.desktop
-application/x-extension-shtml=userapp-Firefox-OVAEE2.desktop
-application/xhtml+xml=userapp-Firefox-OVAEE2.desktop
-application/x-extension-xhtml=userapp-Firefox-OVAEE2.desktop
-application/x-extension-xht=userapp-Firefox-OVAEE2.desktop
-x-scheme-handler/mailto=userapp-Thunderbird-FOCYH2.desktop
-message/rfc822=userapp-Thunderbird-FOCYH2.desktop
-x-scheme-handler/mid=userapp-Thunderbird-FOCYH2.desktop
-x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_var_lib_snapd_snap_eclipse_73_.desktop
 
-[Added Associations]
-x-scheme-handler/http=userapp-Firefox-OVAEE2.desktop;
-x-scheme-handler/https=userapp-Firefox-OVAEE2.desktop;
-x-scheme-handler/chrome=userapp-Firefox-OVAEE2.desktop;
-text/html=userapp-Firefox-OVAEE2.desktop;
-application/x-extension-htm=userapp-Firefox-OVAEE2.desktop;
-application/x-extension-html=userapp-Firefox-OVAEE2.desktop;
-application/x-extension-shtml=userapp-Firefox-OVAEE2.desktop;
-application/xhtml+xml=userapp-Firefox-OVAEE2.desktop;
-application/x-extension-xhtml=userapp-Firefox-OVAEE2.desktop;
-application/x-extension-xht=userapp-Firefox-OVAEE2.desktop;
-x-scheme-handler/mailto=userapp-Thunderbird-FOCYH2.desktop;
-x-scheme-handler/mid=userapp-Thunderbird-FOCYH2.desktop;
+# xdg-open will use these settings to determine how to open filetypes.
+# These .desktop entries can also be seen and changed in ~/.local/share/applications/
+
+text/x-shellscript=text.desktop;
+x-scheme-handler/mailto=mail.desktop;
+text/plain=text.desktop;
+application/postscript=pdf.desktop;
+application/pdf=pdf.desktop;
+image/png=img.desktop;
+image/jpeg=img.desktop;
+image/gif=img.desktop;
+video/x-matroska=video.desktop
+video/mp4=video.desktop
+inode/directory=file.desktop
+audio/ogg=audio.desktop
+audio/mpeg=audio.desktop
+audio/x-m4a=audio.desktop
+audio/x-wav=audio.desktop
+application/octet-stream=audio.desktop
+x-scheme-handler/mailto=mail.desktop
+x-scheme-handler/http=browser.desktop
+x-scheme-handler/https=browser.desktop
+x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_usr_lib_eclipse_.desktop

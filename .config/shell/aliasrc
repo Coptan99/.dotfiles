@@ -6,7 +6,7 @@
 # sudo not required for some system commands
 sudocmd="sudo"
 command -v doas >/dev/null 2>&1 && sudocmd="doas"
-for cmd in su xbps-{install,remove} {,v}sv {,u}mount updatedb reboot poweroff shutdown; do
+for cmd in su pacman-{S,R} {,v}sv {,u}mount updatedb reboot poweroff shutdown; do
 	alias $cmd="$sudocmd $cmd"
 done
 unset sudocmd cmd
@@ -22,7 +22,7 @@ alias \
 
 # Add some colors when you can
 alias \
-        ls="ls -hN --color=auto --group-directories-first" \
+    	ls="ls -hN --color=auto --group-directories-first" \
         grep="grep --color=auto" \
         ip="ip -color=auto" \
         diff="diff --color=auto"
@@ -34,10 +34,10 @@ alias \
         sdn="shutdown -h now" \
         e="$EDITOR" \
         v="$EDITOR" \
-        i="xbps-install -S" \
-        u="xbps-install -u xbps; xbps-install -Su" \
-        r="xbps-remove -R" \
-        q="xbps-query -Rs" \
+        i="doas pacman -Sy" \
+        u="doas pacman -Syyu" \
+        r="doas pacman -Rns" \
+        q="pacman -Ss" \
         z="zathura" \
         nnn="nnn -Rr" \
         devuploads='bash <(curl -s https://devuploads.com/upload.sh)'

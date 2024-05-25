@@ -1,6 +1,6 @@
 #!/bin/sh
 
-choice=$(echo "Shutdown\nReboot\nExit" | dmenu -i -p "Select an action: ")
+choice=$(printf "Shutdown\nReboot\nExit" | dmenu -i -p "Select an action: ")
 
 if [[ "$choice" == "Shutdown" ]]; then
     doas poweroff
