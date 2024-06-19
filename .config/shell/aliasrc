@@ -40,6 +40,7 @@ alias \
         q="pacman -Ss" \
         z="zathura" \
         nnn="nnn -Rr" \
+        lf="lfub" \
         devuploads='bash <(curl -s https://devuploads.com/upload.sh)'
 
 # Some custom aliases

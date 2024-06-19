@@ -1,11 +1,15 @@
 #!/bin/sh
 
-choice=$(printf "Shutdown\nReboot\nExit" | dmenu -i -p "Select an action: ")
+choice=$(printf "Shutdown\nReboot\nSuspend\nExit" | dmenu -i -p "Select an action: ")
 
-if [[ "$choice" == "Shutdown" ]]; then
-    doas poweroff
-elif [[ "$choice" == "Reboot" ]]; then
-    doas reboot
-elif [[ "$choice" == "Exit" ]]; then
-    pkill dwm
-fi
+case "$choice" in
+    "Shutdown") doas poweroff
+     ;;
+    "Suspend") systemctl suspend
+     ;;
+    "Reboot") doas reboot
+     ;;
+    "Exit") pkill dwm
+     ;;
+    *) exit 1;;
+esac

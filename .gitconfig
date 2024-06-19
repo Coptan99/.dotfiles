@@ -1,6 +1,6 @@
 [user]
 	email = omarcoptan9@gmail.com
-	name = Omar Mohamed
+	name = Coptan99
 	signingkey = ~/.ssh/id_rsa.pub
 [commit]
     gpgsign = true
@@ -10,3 +10,7 @@
 	editor = nvim
 [pull]
 	rebase = true
+[review "review.lineageos.org"]
+    username = Coptan99
+[trailer "changeid"]
+    key = Change-Id

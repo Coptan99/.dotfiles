@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export BROWSER="firefox"
+export BROWSER="brave"
 export TERMINAL="st"
 export PATH="$PATH:${$(find ~/.local/bin -maxdepth 1 -type d -printf %p:)%%:}"
 export MANPAGER="nvim +Man!"
@@ -10,7 +10,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export HISTFILE="$XDG_DATA_HOME/history"
-export NNN_FIFO="/tmp/nnn.fifo"
 
 if [ -d "$HOME/.local/bin" ] ;
   then PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
