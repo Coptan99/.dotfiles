@@ -1,9 +1,0 @@
-#!/bin/sh
-
-os=$(printf "Kali\nMrRobot" | dmenu -p "Choose OS:")
-
-if [ "$os" = "Kali" ]; then
-    qemu-system-x86_64 -enable-kvm -m 16G -hda ~/iso/kaliDisk.qcow2 -smp 8 -vga virtio -full-screen & disown
-elif [ "$os" = "MrRobot" ]; then
-    qemu-system-x86_64 -enable-kvm -m 16G -hda ~/iso/mrRobot.qcow2 -smp 8 -vga virtio -full-screen & disown
-fi

@@ -30,6 +30,9 @@ alias \
 # Some abbreviations
 alias \
         ka="killall" \
+        ls="ls -hF --color=auto --group-directories-first" \
+        la="ls -A" \
+        ll="ls -lA" \
         g="git" \
         sdn="shutdown -h now" \
         e="$EDITOR" \
