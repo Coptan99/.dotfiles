@@ -2,7 +2,7 @@ super + Return
     $TERMINAL
 
 super + v
-    $TERMINAL -e $EDITOR
+    virt-manager
 
 super + d
     dmenu_run
@@ -11,25 +11,31 @@ super + w
     $BROWSER
 
 super + {equal, minus, BackSpace, plus}
-    $HOME/.local/bin/volume.sh {up, down, toggle, togglemic}
+    $HOME/script/volume.sh {up, down, toggle, togglemic}
 
 super + shift + BackSpace
-    $HOME/.local/bin/exit.sh
+    $HOME/script/exit.sh
 
 super + m
-    $HOME/.local/bin/mount.sh
+    $HOME/script/mount.sh
 
 super + f
-    $TERMINAL -e lfub
+    $TERMINAL -e nnn -Rr
 
 Print
-    $HOME/.local/bin/screenshot
+    $HOME/script/screenshot
 
 super + n
     $TERMINAL -e ncmpcpp
 
 super + N
     $TERMINAL -e nmtui
+
+super + p
+    mpv $(xclip -o)
+
+super + x
+    slock
 
 
 control + {equal,minus}
@@ -39,10 +45,10 @@ XF86MonBrightness{Up,Down}
     xbacklight -{inc,dec} 2
 
 XF86Audio{Raise,Lower}Volume
-    $HOME/.local/bin/volume.sh {up, down}
+    $HOME/script/volume.sh {up, down}
 
 XF86AudioMute
-    $HOME/.local/bin/volume.sh toggle
+    $HOME/script/volume.sh toggle
 
 XF86Calculator
     xcalc

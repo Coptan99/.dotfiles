@@ -24,3 +24,4 @@ x-scheme-handler/http=browser.desktop
 x-scheme-handler/https=browser.desktop
 x-scheme-handler/eclipse+command x-scheme-handler/eclipse+mpc=_usr_lib_eclipse_.desktop
 x-scheme-handler/discord-712465656758665259=discord-712465656758665259.desktop
+x-scheme-handler/msteams=teams.desktop

@@ -2,14 +2,20 @@
 
 export BROWSER="brave"
 export TERMINAL="st"
-export PATH="$PATH:${$(find ~/.local/bin -maxdepth 1 -type d -printf %p:)%%:}"
-export MANPAGER="nvim +Man!"
 export EDITOR="nvim"
+export VISUAL="nvim"
+
+export PATH="$HOME/.local/bin:$HOME/script:$HOME/script/statusbar:$PATH"
+export MANPAGER="nvim +Man!"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export HISTFILE="$XDG_DATA_HOME/history"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+export NNN_FIFO="/tmp/nnn.fifo"
+export NNN_PLUG="x:!chmod +x \$nnn*;y:-preview-tabbed"
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 
 if [ -d "$HOME/.local/bin" ] ;
   then PATH="$PATH:$(find ~/.local/bin -type d | paste -sd ':' -)"
