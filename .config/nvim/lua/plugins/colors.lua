@@ -1,14 +1,28 @@
 return {
 	{
-		"Mofiqul/dracula.nvim",
+		"AlexvZyl/nordic.nvim",
 		lazy = false,
 		priority = 1000,
 		config = function()
-			require("dracula").setup({
-
+			local colors = require("nordic.colors")
+			require("nordic").setup({
+				-- transparent_bg = true,
+				telescope = {
+					style = "classic",
+				},
+				override = {
+					StatusLine = {
+						fg = "none",
+					},
+					LineNr = {
+						fg = colors.gray5,
+					},
+					PmenuSel = {
+						bg = colors.blue0,
+					},
+				},
 			})
-			require("dracula").load()
+			require("nordic").load()
 		end,
 	}
 }
-

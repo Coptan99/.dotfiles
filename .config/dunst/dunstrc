@@ -29,3 +29,6 @@
 	background = "#b74e58"
 	frame_color = "#bf616a"
 	timeout = 10
+
+[play_sound]
+	summary = "*"
