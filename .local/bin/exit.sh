@@ -1,15 +1,13 @@
 #!/bin/sh
 
-choice=$(printf "Shutdown\nReboot\nSuspend\nExit" | dmenu -i -p "Select an action: ")
-
-case "$choice" in
-    "Shutdown") poweroff
-     ;;
-    "Suspend") systemctl suspend
-     ;;
-    "Reboot") doas reboot
-     ;;
-    "Exit") pkill dwm
-     ;;
-    *) exit 1;;
+case "${1:-$(printf "lock\nexit\nrefresh\nsuspend\nhibernate\nreboot\npoweroff" | dmenu -i -r -p "Select an action: ")}" in
+	lock) locker ;;
+	exit) kill -TERM "$(pidof -sx dwm)" ;;
+	refresh) kill -HUP "$(pidof -sx dwm)" ;;
+	suspend) locker loginctl suspend -i ;;
+	hibernate) locker loginctl hibernate -i ;;
+	reboot) loginctl reboot -i ;;
+	poweroff) loginctl poweroff -i ;;
+	*) exit 1;;
 esac
+
