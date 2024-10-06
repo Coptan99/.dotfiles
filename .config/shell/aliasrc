@@ -1,55 +1,48 @@
 #!/bin/sh
 
+alias e="${EDITOR:-vi}"
+alias q="exit"
+
+alias mkd="mkdir -pv"
+alias cp="cp -iv"
+alias ln="ln -iv"
+alias mv="mv -iv"
+alias rm="rm -Iv"
+alias ls="ls -hF --color=auto --group-directories-first"
+alias ll="ls -lA"
+alias grep="grep --color=auto"
+alias gr="grep --exclude-dir={.git,node_modules} -Hnr"
+
+alias g="git"
+alias gst="git status -sb"
+alias gph="git push"
+alias gpl="git pull"
+alias gdf="git diff"
+
+alias xu="xbps-install -u xbps; xbps-install -Su"
+alias xi="xbps-install -S"
+alias xr="xbps-remove -R"
+alias xq="xbps-query -R"
+
+alias ip="ip -color=auto"
+alias bc="bc -ql"
+alias nnn="nnn -Rr"
+alias diff="diff --color=auto"
+alias info="info --vi-keys"
+alias ccat="highlight -O ansi"
+alias rsync="rsync -vrPlu"
+alias ffmpeg="ffmpeg -hide_banner"
+alias urls="grep -aohE '(((http|https|gopher|gemini|ftp|ftps|git)://|www\\.)[a-zA-Z0-9.]*[:;a-zA-Z0-9./+@$&%?$\#=_~-]*)|((magnet:\\?xt=urn:btih:)[a-zA-Z0-9]*)'"
+alias bm="buku --suggest"
+
+# dotfiles management
+alias dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME" \
+
 # neovim for vim if available
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
-# Use $XINITRC variable if file exists.
-[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
-
-# sudo not required for some system commands
-for command in mount umount sv xbps-install xbps-remove updatedb shutdown poweroff reboot ; do
-	alias $command="doas $command"
-done; unset command
-
-se() {
-	choice="$(find ~/.local/bin -mindepth 1 -printf '%P\n' | fzf)"
-	[ -f "$HOME/.local/bin/$choice" ] && $EDITOR "$HOME/.local/bin/$choice"
-}
-
-# Some verbosity
-alias \
-        cp="cp -iv" \
-        mv="mv -iv" \
-        rm="rm -vI" \
-        bc="bc -ql" \
-        mkd="mkdir -pv" \
-        yt="yt-dlp --embed-metadata -i" \
-        ffmpeg="ffmpeg -hide_banner"
-
-# Add some colors when you can
-alias \
-    	ls="ls -hN --color=auto --group-directories-first" \
-        la="ls -A" \
-        ll="ls -lhA" \
-        grep="grep --color=auto" \
-        ip="ip -color=auto" \
-        diff="diff --color=auto"
-
-# Some abbreviations
-alias \
-        ka="killall" \
-        g="git" \
-        sdn="shutdown -h now" \
-        e="$EDITOR" \
-        vi="$EDITOR" \
-        i="xbps-install -S" \
-        u="xbps-install -u xbps; xbps-install -Su" \
-        r="xbps-remove" \
-        q="xbps-query -Rs" \
-        z="zathura" \
-        nnn="nnn -Rr" \
-
-# Some custom aliases
-alias \
-        dotfiles="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME" \
-        big="find / -type f -size +50M -exec du -h {} \; | sort -n"
+sudocmd="$(command -v doas 2>/dev/null || command -v sudo 2>/dev/null)"
+for cmd in mount umount sv xbps-install xbps-remove updatedb shutdown poweroff reboot zzz ZZZ vsv; do
+	alias $cmd="$sudocmd $cmd"
+done
+unset sudocmd cmd
