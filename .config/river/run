@@ -15,6 +15,4 @@ export XDG_SESSION_TYPE="wayland"
 export XDG_SESSION_DESKTOP="river"
 export XDG_CURRENT_DESKTOP="river"
 
-brightnessctl -q -c backlight set 30
-
 exec ssh-agent dbus-run-session river -log-level debug >/tmp/river-"$(date "+%F-%T")".log 2>&1

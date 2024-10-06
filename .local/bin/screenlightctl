@@ -1,3 +1,5 @@
+#!/bin/sh
+
 brightnessctl -q -c backlight set "$@"
 
 bri="$(brightnessctl -m -c backlight info 2>/dev/null | cut -d "," -f 4)" || exit 1
@@ -9,3 +11,4 @@ notify-send \
 	-h "string:x-canonical-private-synchronous:brightness" \
 	"brightness" \
 	"$bri"
+
