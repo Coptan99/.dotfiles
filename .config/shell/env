@@ -2,7 +2,6 @@
 
 # Default programs:
 export BROWSER="firefox"
-# export TERMINAL="st"
 export TERMINAL="foot"
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -31,10 +30,9 @@ export SSH_ASKPASS="$HOME/.local/bin/dmenu_askpass"
 
 export LESS="-R"
 export MANPAGER="less -R --use-color -Dd+b -Duc"
-export GTK_THEME="Arc-Dark:dark"
-# export QT_QPA_PLATFORMTHEME="gtk2"        # Have QT use gtk2 theme.
-# export AWT_TOOLKIT="MToolkit wmname LG3D" # May have to install wmname
-# export _JAVA_AWT_WM_NONREPARENTING=1
-# export MOZ_USE_XINPUT2="1"
+
+export GTK_THEME="Arc-Dark"
+export QT_STYLE_OVERRIDE="kvantum"
+export QT_QPA_PLATFORMTHEME="gtk2"
 
 export PATH="$HOME/.local/bin:$GOPATH/bin:$PATH"
