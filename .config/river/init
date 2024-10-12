@@ -5,11 +5,11 @@ run() { pidof -qsx "$1" || "$@" & }
 # Custom keymaps
 riverctl map normal Super Return spawn "$TERMINAL"
 riverctl map normal Super D spawn "fuzzel"
-riverctl map normal Super F spawn "$TERMINAL -e nnn -Rr"
+riverctl map normal Super F spawn "$TERMINAL -e bicon.bin nnn -Rr"
 riverctl map normal Super W spawn "$BROWSER"
 riverctl map normal Super Print spawn "screenshot"
 riverctl map normal Super+Shift Backspace spawn "exit.sh"
-riverctl map normal Super n spawn "$TERMINAL -e ncmpcpp"
+riverctl map normal Super n spawn "$TERMINAL -e bicon.bin ncmpcpp"
 riverctl map normal Super+Shift n spawn "$TERMINAL -e nmtui"
 riverctl map normal Super+Shift p spawn "$TERMINAL -e pulsemixer"
 
@@ -97,7 +97,9 @@ riverctl border-color-unfocused 0x4c566a
 riverctl rule-add ssd
 riverctl rule-add -app-id bar csd
 riverctl rule-add -app-id float float
+riverctl rule-add -title Picture-in-Picture float
 
+riverctl hide-cursor timeout 5000
 riverctl hide-cursor when-typing enabled
 riverctl xcursor-theme Adwaita
 
