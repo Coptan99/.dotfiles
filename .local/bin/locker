@@ -1,0 +1,7 @@
+#!/bin/sh
+
+exec waylock \
+	-fork-on-lock \
+	-init-color 0x242933 \
+	-input-color 0x3b4252 \
+	-fail-color 0xbf616a
