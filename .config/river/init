@@ -12,7 +12,9 @@ riverctl map normal Super+Shift Backspace spawn "menu-sysact"
 riverctl map normal Super n spawn "$TERMINAL -e bicon.bin ncmpcpp"
 riverctl map normal Super+Shift n spawn "$TERMINAL -e nmtui"
 riverctl map normal Super+Shift p spawn "$TERMINAL -e pulsemixer"
+riverctl map normal Super O spawn "clipman pick -t CUSTOM -T menu"
 riverctl map normal Super p spawn "passmenu"
+riverctl map normal Super+Shift P spawn "passmenu otp"
 
 riverctl map normal Super J focus-view next
 riverctl map normal Super K focus-view previous
@@ -131,3 +133,4 @@ run poweralertd
 run swayidle -w
 run syncthing serve --no-browser
 pidof -qsx mpd || (mpd && mpd-mpris) &
+run wl-paste -t text -w clipman store -P
