@@ -1,0 +1,46 @@
+#!/bin/sh
+
+notify() {
+	notify-send -a "$(basename "$0")" "$@"
+}
+
+getinput() {
+	wl-paste | menu -p "${1:-input}> "
+}
+
+action="${1:-$(printf "copy\nmpv\nsearch\nbrowser\ntranslate\nbookmark\nlist-bookmarks" | menu -p "action> ")}" || exit 1
+case "$action" in
+	copy)
+		getinput | wl-copy
+		;;
+	mpv)
+		setsid -f mpv --keep-open --really-quiet "$(getinput "$action")" >/dev/null 2>&1
+		;;
+	search)
+		setsid -f "$BROWSER" --search "$(getinput "$action")" >/dev/null 2>&1
+		;;
+	browser)
+		setsid -f "$BROWSER" "$(getinput "$action")" >/dev/null 2>&1
+		;;
+	translate)
+		input="$(getinput "$action")"
+		notify "$action: $input" "$(trans -no-ansi -no-bidi "$input")"
+		;;
+	bookmark)
+		url="$(getinput "$action")"
+		tag="$(buku --stag --np | cut -d "." -f 2 | cut -d " " -f 2 | menu -p "tag> ")" || exit 1
+		buku --nostdin --tacit --np -a "$url" "$tag" >/dev/null 2>&1 ||
+			notify -u critical "error" "$action: adding '$url' with tag '$tag' failed"
+		;;
+	list-bookmarks)
+		buku -p -f 4 |
+			sed "s/\t/ /g" |
+			menu --counter -w 90 -p "bookmarks> " |
+			cut -d " " -f 1 |
+			xargs -r buku -o
+		;;
+	*)
+		notify "error" "invalid action: $action"
+		exit 1
+		;;
+esac
