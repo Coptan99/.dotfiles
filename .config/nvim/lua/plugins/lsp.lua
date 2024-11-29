@@ -42,12 +42,8 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"bashls",
-					"clangd",
-					"gopls",
 					"pyright",
 					"lua_ls",
-					"html",
-					"tsserver",
 				},
 				handlers = {
 					function(name)
