@@ -46,4 +46,4 @@
 [user]
 	email = omarcoptan9@gmail.com
 	name = Omar Mohamed
-	signingkey = ~/.ssh/id_rsa.pub
+	signingkey = ~/.ssh/id_ed25519.pub
