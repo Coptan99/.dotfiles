@@ -1,4 +1,5 @@
 [alias]
+	a = add
 	co = checkout
 	cm = commit -m
 	st = status -sb
