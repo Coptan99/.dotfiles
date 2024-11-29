@@ -25,6 +25,12 @@
 	syntax-theme = Nord
 	file-modified-label = modified:
 
+[diff]
+    tool = nvimdiff
+
+[difftool]
+	prompt = false
+
 [gpg]
 	format = ssh
 
