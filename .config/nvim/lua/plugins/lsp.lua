@@ -28,6 +28,7 @@ vim.diagnostic.config({
 return {
 	{
 		"williamboman/mason.nvim",
+		event = { "BufReadPre", "BufNewFile" },
 		build = ":MasonUpdate",
 		dependencies = {
 			"williamboman/mason-lspconfig.nvim",
