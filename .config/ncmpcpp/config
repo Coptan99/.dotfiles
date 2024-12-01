@@ -15,3 +15,9 @@ progressbar_elapsed_color = blue:b
 media_library_albums_split_by_date = no
 ignore_leading_the = yes
 startup_screen = "browser"
+
+visualizer_data_source = "/tmp/mpd.fifo"
+visualizer_output_name = "my_fifo"
+visualizer_in_stereo = "yes"
+visualizer_type = "spectrum"
+visualizer_look = "+|"
