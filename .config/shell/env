@@ -35,6 +35,7 @@ export SSH_ASKPASS="/usr/local/bin/wayprompt-ssh-askpass"
 
 export LESS="-R"
 export MANPAGER="less -R --use-color -Dd+b -Duc"
+export MANROFFOPT="-P -c"
 
 export GTK_THEME="Arc-Dark"
 export QT_STYLE_OVERRIDE="kvantum"
