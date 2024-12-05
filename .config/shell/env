@@ -30,8 +30,8 @@ export ZK_NOTEBOOK_DIR="$(xdg-user-dir DOCUMENTS)/notes"
 
 # Other program settings:
 export FZF_DEFAULT_OPTS="--layout=reverse --height=~40%"
-export SUDO_ASKPASS="/usr/local/bin/wayprompt-ssh-askpass"
-export SSH_ASKPASS="/usr/local/bin/wayprompt-ssh-askpass"
+export SUDO_ASKPASS="/usr/bin/wayprompt-ssh-askpass"
+export SSH_ASKPASS="/usr/bin/wayprompt-ssh-askpass"
 
 export LESS="-R"
 export MANPAGER="less -R --use-color -Dd+b -Duc"
