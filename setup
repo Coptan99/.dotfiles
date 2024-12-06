@@ -1,0 +1,69 @@
+#!/bin/sh
+
+HERE="$(dirname "$(readlink -f "$0")")"
+XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+PROGRAMSDIR="${PROGRAMSDIR:-$HOME/programs}"
+
+# shellcheck disable=2015
+sudocmd="$([ -s /etc/doas.conf ] && command -v doas 2>/dev/null || command -v sudo 2>/dev/null)"
+browserdir="$HOME/.mozilla/firefox"
+
+setup_dotfiles() {
+	cp -srvft "$HOME" "$HERE/.config" "$HERE/.local"
+	ln -svf "$XDG_CONFIG_HOME/shell/profile" "$HOME/.zprofile"
+	"$sudocmd" cp -fv "$XDG_CONFIG_HOME/doas/doas.conf" /etc/doas.conf
+	"$sudocmd" cp -rfvt /etc "$HERE/.config/modprobe.d"
+	"$sudocmd" cp -srfvt /etc "$XDG_CONFIG_HOME/acpi" "$XDG_CONFIG_HOME/zzz.d"
+}
+
+setup_runit() {
+	doas rm -vf \
+		/run/runit/service/agetty-tty4 \
+		/run/runit/service/agetty-tty5 \
+		/run/runit/service/agetty-tty6
+	doas ln -svft /run/runit/service \
+		/etc/runit/sv/socklog \
+		/etc/runit/sv/klog \
+		/etc/runit/sv/dbus \
+		/etc/runit/sv/udevd \
+		/etc/runit/sv/chrony \
+		/etc/runit/sv/elogind \
+		/etc/runit/sv/dhcpcd \
+		/etc/runit/sv/wpa_supplicant \
+		/etc/runit/sv/bluetoothd \
+		/etc/runit/sv/cronie \
+		/etc/runit/sv/tlp \
+		/etc/runit/sv/sshd \
+		/etc/runit/sv/docker
+}
+
+setup_firefox() {
+	[ -d "$browserdir" ] ||
+		{ firefox --headless >/dev/null 2>&1 & ffpid=$!; sleep 1; }
+	profile="$(sed -n "/Default=.*\..*/s/.*=//p" "$browserdir/profiles.ini")"
+	curl -sL https://raw.githubusercontent.com/arkenfox/user.js/master/user.js |
+		cat - "$XDG_CONFIG_HOME/firefox/user.js" >"$browserdir/$profile/user.js"
+	# shellcheck disable=SC2015
+	[ -n "$ffpid" ] && pkill firefox || true
+}
+
+clean() {
+	cd "$HERE" || exit 1
+	find .config .local -type f -exec rm -vf "$HOME/{}" \;
+	profile="$(sed -n "/Default=.*\..*/s/.*=//p" "$browserdir/profiles.ini")"
+	[ -s "$browserdir/$profile/user.js" ] && rm -vf "$browserdir/$profile/user.js"
+}
+
+case "$1" in
+	""|all)
+		setup_dotfiles
+		setup_firefox
+		;;
+	dotfiles) setup_dotfiles ;;
+	firefox) setup_firefox ;;
+	clean) clean ;;
+	*)
+		echo "$(basename "$0"): unknown command \"$1\"" >&2
+		exit 1
+		;;
+esac

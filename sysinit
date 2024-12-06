@@ -1,0 +1,119 @@
+#!/bin/sh
+
+HERE="$(dirname "$(readlink -f "$0")")"
+. "$HERE/.config/shell/env"
+
+PROGRAMSDIR="${PROGRAMSDIR:-$HOME/programs}"
+[ -d "$PROGRAMSDIR" ] || mkdir -p "$PROGRAMSDIR"
+
+echo "installing archlinux support"
+sudo pacman -Sqyu --needed --noconfirm artix-archlinux-support
+
+echo "setting up dotfiles"
+
+if ! command -v doas >/dev/null 2>&1; then
+	echo "installing doas"
+	sudo pacman -Sq --needed --noconfirm opendoas
+fi
+
+alias pkginst="doas pacman -Sq --needed --noconfirm"
+alias aurinst="paru -Sq --needed --noconfirm"
+
+echo "updating repos and packages"
+pkginst -yu
+
+echo "installing drivers and firmware"
+pkginst mesa linux-firmware
+
+echo "installing wayland tools"
+pkginst river foot foot-terminfo kanshi fuzzel mako swayidle wlopm waylock wl-clipboard grim slurp wf-recorder wev
+aurinst sandbar poweralertd wbg clipman
+
+echo "installing login management tools"
+pkginst elogind pam_rundmr
+
+echo "installing network tools"
+pkginst dhcpcd wpa_supplicant ufw bluez
+
+echo "installing audio tools"
+pkginst alsa-utils pipewire pipewire-audio pipewire-alsa pipewire-pulse wireplumber pulsemixer libspa-bluetooth sof-firmware
+doas mkdir -p /etc/pipewire/pipewire.conf.d
+doas cp -a /usr/share/pipewire /usr/share/wireplumber /etc
+
+echo "installing general tools"
+pkginst pacman-contrib xdg-utils xdg-user-dirs xdg-desktop-portal-wlr  curl wget git mercurial patch rsync gnupg openssh  pass pass-otp signify dbus cronie bc time entr less lesspipe z mlocate nnn fzf ripgrep fd chrony libnotify darkhttpd yt-dlp libarchive tar xz gzip bzip2 p7zip unzip unrar libisoburn mtools hdparm sdparm tlp highlight newsboat calcurse lftp hwinfo firejail fribidi zbar qrencode mediainfo bat translate-shell duf direnv syncthing gnome-epub-thumbnailer zk
+aurinst vsv pam_ssh wayprompt buku git-delta urlview dragon-drop bicon-git sc-im lz4json
+
+echo "installing manual pages"
+pkginst man-db man-pages texinfo tealdeer
+
+echo "installing text editor and shell"
+pkginst vim neovim tmux tmate zsh zsh-completions zsh-autosuggestions zsh-history-substring-search
+aurinst zsh-fast-syntax-highlighting
+
+echo "installing programming tools"
+pkginst gcc llvm clang lld tcc nasm make meson pkgconf automake libtool zig rustup go python python-pip python-pipx python-pipenv uv ruff julia lua luarocks deno nodejs npm pnpm xxd gdb valgrind radare2 delve binutils upx jq cppcheck shellcheck tokei hyperfine nix docker docker-compose podman podman-compose staticcheck dive jupyterlab
+aurinst bun-bin
+rustup default stable && cargo install cargo-update cargo-info
+
+echo "installing filesystems support"
+pkginst fuse3 autofs exfat-utils ntfs-3g sshfs mtpfs ifuse
+aurinst simple-mtpfs
+
+echo "installing multimedia tools"
+pkginst ffmpeg imagemagick perl-image-exiftool mat2 qpdf gimp sox mpv mpv-mpris imv zathura mupdf zathura-pdf-mupdf zathura-ps libwebp mpd mpd-mpris mpc playerctl ncmpcpp
+aurinst sioyek cava
+
+echo "installing email tools"
+pkginst aerc isync msmtp notmuch gettext
+aurinst abook
+
+echo "installing system monitoring tools"
+pkginst strace lm_sensors socklog nvtop iotop iftop powertop smartmontools
+aurinst htop-vim
+
+echo "installing internet stuff"
+pkginst firefox lynx w3m amfora weechat webkit2gtk
+aurinst arkenfox-user.js
+
+echo "setting up firefox"
+"$HERE/setup" firefox || { echo "setup firefox failed" >&2; epkginstt 1; }
+
+echo "installing tor and torrent tools"
+pkginst tor torsocks transmission-cli
+
+echo "installing networking tools"
+pkginst openbsd-netcat lsof ldns wireshark-cli termshark socat websocat mitmproxy bettercap sqlmap xh macchanger proxychains-ng
+aurinst wrk nemesis
+
+echo "installing markup and latex tools"
+pkginst pandoc-bin lowdown groff typst texlive-basic texlive-pictures
+
+echo "installing fonts, icons, themes and sounds"
+pkginst fontconfig ttf-dejavu noto-fonts-emoji arc-theme kvantum sound-theme-freedesktop
+aurinst ttf-amiri
+
+echo "installing runit services"
+pkginst elogind-runit dbus-runit dhcpcd-runit wpa_supplicant-runit ufw-runit bluez-runit chrony-runit cronie-runit openssh-runit tlp-runit docker-runit
+
+echo "installing dkms"
+pkginst dkms linux-headers
+
+echo "installing virtual machine stuff"
+pkginst qemu-full virt-manager
+
+echo "installing gaming stuff"
+pkginst wine-staging
+pkginst giflib lib32-giflib gnutls lib32-gnutls v4l-utils lib32-v4l-utils libpulse \
+lib32-libpulse alsa-plugins lib32-alsa-plugins alsa-lib lib32-alsa-lib sqlite lib32-sqlite libxcomposite \
+lib32-libxcomposite ocl-icd lib32-ocl-icd libva lib32-libva gtk3 lib32-gtk3 gst-plugins-base-libs \
+lib32-gst-plugins-base-libs vulkan-icd-loader lib32-vulkan-icd-loader sdl2 lib32-sdl2
+pkginst nvidia-dkms nvidia-utils lib32-nvidia-utils nvidia-settings vulkan-icd-loader lib32-vulkan-icd-loader
+pkginst gamemode lib32-gamemode
+
+echo "setting user permissions"
+doas usermod -aG video,audio,input,power,storage,optical,lp,scanner,dbus,docker,adbusers,uucp,libvirt "$USER"
+
+echo "changing shell"
+chsh -s "$(which zsh)"
+doas ln -sf "$(which dash)" /bin/sh
