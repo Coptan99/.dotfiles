@@ -4,4 +4,6 @@
 
 doas -n /usr/bin/loadkeys "$XDG_CONFIG_HOME/loadkeys/loadkeysrc"
 
+unsetopt PROMPT_SP 2>/dev/null
+
 [ -z "$WAYLAND_DISPLAY" ] && [ "$(tty)" = "/dev/tty1" ] && exec "$XDG_CONFIG_HOME/river/run"
