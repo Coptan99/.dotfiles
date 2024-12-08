@@ -87,7 +87,7 @@ pkginst openbsd-netcat lsof ldns wireshark-cli termshark socat websocat mitmprox
 aurinst wrk nemesis
 
 echo "installing markup and latex tools"
-pkginst pandoc-bin lowdown groff typst texlive-basic texlive-pictures
+pkginst pandoc-bin lowdown groff typst texlive-basic texlive-pictures texlive-latex texlive-latexextra texlive-plaingeneric texlive-fontsrecommended
 
 echo "installing fonts, icons, themes and sounds"
 pkginst fontconfig ttf-dejavu noto-fonts-emoji arc-theme kvantum sound-theme-freedesktop
