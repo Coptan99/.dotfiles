@@ -26,7 +26,7 @@ echo "installing drivers and firmware"
 pkginst mesa linux-firmware
 
 echo "installing wayland tools"
-pkginst river foot foot-terminfo kanshi fuzzel mako swayidle wlopm waylock wl-clipboard grim slurp wf-recorder wev wmname
+pkginst river foot foot-terminfo kanshi fuzzel mako swayidle wlopm waylock wl-clipboard grim slurp wf-recorder wev wmname brightnessctl
 aurinst sandbar poweralertd wbg clipman
 
 echo "installing login management tools"
