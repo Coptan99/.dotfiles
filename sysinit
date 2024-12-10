@@ -11,6 +11,15 @@ sudo pacman -Sqyu --needed --noconfirm artix-archlinux-support
 
 echo "setting up dotfiles"
 
+if ! command -v paru >/dev/null 2>&1; then
+	echo "Installing AUR"
+	sudo pacman -S --needed base-devel
+	git clone https://aur.archlinux.org/paru.git ~/paru
+	cd ~/paru
+	makepkg -si
+	cd -
+fi
+
 if ! command -v doas >/dev/null 2>&1; then
 	echo "installing doas"
 	sudo pacman -Sq --needed --noconfirm opendoas
