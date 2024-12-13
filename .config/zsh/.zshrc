@@ -18,6 +18,8 @@ precmd() {
 }
 PROMPT='%B%F{cyan}%c %F{blue}${vcs_info_msg_0_}%F{%(?.green.red)}>%f%b '
 [ -n "$SSH_TTY" ] && PROMPT="%F{magenta}[%M] $PROMPT"
+# PS1="%{$fg[blue]%}%B[%b%{$fg[cyan]%}%n%{$fg[grey]%}%B@%b%{$fg[cyan]%}%m%{$fg[blue]%}%B]-%b%{$fg[blue]%}%B[%b%{$fg[white]%}%~%{$fg[blue]%}%B]%b
+# %{$fg[cyan]%}%B>>>%b%{$reset_color%} "
 
 # History in cache directory:
 HISTSIZE=999999999
