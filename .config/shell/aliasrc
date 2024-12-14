@@ -32,9 +32,9 @@ alias bm="buku --suggest"
 alias drag="dragon-drop -x"
 
 # pacman
-alias pi="pacman -Sy"
-alias pu="pacman -Syu"
-alias pr="pacman -Rns"
+alias pi="doas pacman -Sy"
+alias pu="doas pacman -Syu"
+alias pr="doas pacman -Rns"
 alias pq="pacman -Ss"
 alias pql="pacman -Qs"
 
@@ -42,7 +42,7 @@ alias pql="pacman -Qs"
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 sudocmd="$(command -v doas 2>/dev/null || command -v sudo 2>/dev/null)"
-for cmd in pacman su mount umount sv updatedb shutdown poweroff reboot zzz ZZZ vsv; do
+for cmd in su mount umount sv updatedb shutdown poweroff reboot zzz ZZZ vsv; do
 	alias $cmd="$sudocmd $(which "$cmd")"
 done
 unset sudocmd cmd
