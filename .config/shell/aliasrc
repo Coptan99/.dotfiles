@@ -38,14 +38,11 @@ alias pr="pacman -Rns"
 alias pq="pacman -Ss"
 alias pql="pacman -Qs"
 
-# dotfiles management
-alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
-
 # neovim for vim if available
 [ -x "$(command -v nvim)" ] && alias vim="nvim" vimdiff="nvim -d"
 
 sudocmd="$(command -v doas 2>/dev/null || command -v sudo 2>/dev/null)"
-for cmd in mount umount sv xbps-install xbps-remove updatedb shutdown poweroff reboot zzz ZZZ vsv; do
-	alias $cmd="$sudocmd $cmd"
+for cmd in pacman su mount umount sv updatedb shutdown poweroff reboot zzz ZZZ vsv; do
+	alias $cmd="$sudocmd $(which "$cmd")"
 done
 unset sudocmd cmd
