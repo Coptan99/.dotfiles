@@ -31,6 +31,13 @@ alias urls="grep -aohE '(((http|https|gopher|gemini|ftp|ftps|git)://|www\\.)[a-z
 alias bm="buku --suggest"
 alias drag="dragon-drop -x"
 
+# pacman
+alias pi="pacman -Sy"
+alias pu="pacman -Syu"
+alias pr="pacman -Rns"
+alias pq="pacman -Ss"
+alias pql="pacman -Qs"
+
 # dotfiles management
 alias config="/usr/bin/git --git-dir=$HOME/.dotfiles --work-tree=$HOME"
 
