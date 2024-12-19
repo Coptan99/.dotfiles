@@ -20,6 +20,9 @@ border-color=#bf616a
 [mode=dnd]
 invisible=1
 
+[app-name=screenlightctl]
+on-notify=none
+
 [app-name=wpa_supplicant category=network.connected]
 on-notify=exec play -q /usr/share/sounds/freedesktop/stereo/service-login.oga
 
