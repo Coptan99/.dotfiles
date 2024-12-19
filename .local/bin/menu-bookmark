@@ -1,0 +1,3 @@
+#!/bin/sh
+
+wtype $(buku -p -f 4 | cut -f 2 | menu --counter -w 90 -p "bookmark> ")
