@@ -20,6 +20,15 @@ border-color=#bf616a
 [mode=dnd]
 invisible=1
 
+[app-name=poweralertd]
+on-notify=none
+
+[app-name=poweralertd category=power.online]
+on-notify=exec play -q /usr/share/sounds/freedesktop/stereo/power-plug.oga
+
+[app-name=poweralertd category=power.offline]
+on-notify=exec play -q /usr/share/sounds/freedesktop/stereo/power-unplug.oga
+
 [app-name=screenlightctl]
 on-notify=none
 
