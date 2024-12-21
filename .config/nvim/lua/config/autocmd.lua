@@ -1,6 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
-local format_group = augroup("format", { clear = true })
 local filetype_group = augroup("filetype", { clear = true })
 
 autocmd({ "BufNewFile", "BufRead" }, {
